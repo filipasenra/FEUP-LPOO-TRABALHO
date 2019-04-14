@@ -1,28 +1,33 @@
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.screen.Screen;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 public class Arena {
-    public int width;
-    public int height;
+    BackGround background = new BackGround(80, 24, ' ',"#336699");
+    Player player = new Player(new Position(0,0), 'X', "#ffffff");
 
-    public Arena(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public void draw(TextGraphics graphics)
+    {
+        background.draw(graphics);
+        player.move(background.getWidth(), background.getHeight());
+        player.draw(graphics);
     }
 
-    public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#009900"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
-    }
+    public void processKey(KeyStroke key) {
 
- }
+        switch (key.getKeyType())
+        {
+            case ArrowDown:
+                this.player.setDirection(Player.DIRECTION.SOUTH);
+                break;
+            case ArrowLeft:
+                this.player.setDirection(Player.DIRECTION.WEAST);
+                break;
+            case ArrowRight:
+                this.player.setDirection(Player.DIRECTION.EAST);
+                break;
+            case ArrowUp:
+                this.player.setDirection(Player.DIRECTION.NORTH);
+                break;
+        }
+    }
+}

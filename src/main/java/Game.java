@@ -6,17 +6,20 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
     private Screen screen;
     private Arena arena;
     private KeyStroke key;
+    int FPS = 250; //Frames per seconds (controls the speed of the Player)
 
     public Game() {
         try {
             Terminal terminal = new DefaultTerminalFactory().createTerminal();
             screen = new TerminalScreen(terminal);
-            arena = new Arena(80, 24);
+            arena = new Arena();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -31,16 +34,27 @@ public class Game {
 
                 draw();
 
-                key = screen.readInput();
+                TimeUnit.MILLISECONDS.sleep((60* 1000)/FPS);
+
+                key = screen.pollInput();
+
+                if(key == null)
+                    continue;
 
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
                     screen.close();
 
                 processKey(key);
 
+                if(key.getKeyType() == KeyType.EOF)
+                    break;
 
-            } while (key.getKeyType() != KeyType.EOF);
+            } while (true);
+
         } catch (IOException e) {
+            e.printStackTrace();
+
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -53,7 +67,8 @@ public class Game {
     }
 
     private void processKey(KeyStroke key) {
-        //arena.processKey(key);
+
+        arena.processKey(key);
     }
 
 }
