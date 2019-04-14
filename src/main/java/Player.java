@@ -3,19 +3,23 @@ public class Player extends Element{
     enum DIRECTION {
         NORTH,
         SOUTH,
-        WEAST,
+        WEST,
         EAST
     }
 
     private DIRECTION direction = DIRECTION.EAST;
 
-    public Player(Position position, char symbol, String color) {
+    public Player(Position position, String symbol, String color) {
         super(position, symbol, color);
     }
 
     public void setDirection(DIRECTION direction)
     {
         this.direction = direction;
+    }
+
+    public DIRECTION getDirection() {
+        return direction;
     }
 
     @Override
@@ -30,7 +34,7 @@ public class Player extends Element{
             case SOUTH:
                 position = new Position(this.position.getX(), this.position.getY() + 1);
                 break;
-            case WEAST:
+            case WEST:
                 position = new Position(this.position.getX() - 1, this.position.getY());
                 break;
             case EAST:

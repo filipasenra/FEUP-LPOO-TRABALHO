@@ -8,7 +8,7 @@ public abstract class Element extends Item {
     //Position of object
     protected Position position;
 
-    public Element(Position position, char symbol, String color) {
+    public Element(Position position, String symbol, String color) {
 
         super(symbol, color);
         this.position = position;
@@ -19,7 +19,7 @@ public abstract class Element extends Item {
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), this.symbol);
 
     }
 

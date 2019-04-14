@@ -15,7 +15,7 @@ public class BackGround extends Item{
     public int width;
     public int height;
 
-    public BackGround(int width, int height, char symbol, String color) {
+    public BackGround(int width, int height, String symbol, String color) {
         super(symbol, color);
         this.width = width;
         this.height = height;
@@ -23,7 +23,7 @@ public class BackGround extends Item{
 
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString(this.color));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), this.symbol);
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), this.symbol.charAt(0));
     }
 
     public int getWidth() {

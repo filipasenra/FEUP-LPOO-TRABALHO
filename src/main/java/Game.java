@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -16,11 +17,18 @@ public class Game {
 
     public Game() {
         try {
-            Terminal terminal = new DefaultTerminalFactory().createTerminal();
+            int width = 70;
+            int height = 20;
+            Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
             screen = new TerminalScreen(terminal);
-            arena = new Arena();
 
-        } catch (IOException e) {
+            screen.setCursorPosition(null);   // we don't need a cursor
+            screen.startScreen();             // screens must be started
+            screen.doResizeIfNecessary();     // resize screen if necessary
+
+            arena = new Arena(width, height);
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -67,7 +75,6 @@ public class Game {
     }
 
     private void processKey(KeyStroke key) {
-
         arena.processKey(key);
     }
 
