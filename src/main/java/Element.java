@@ -35,7 +35,7 @@ public abstract class Element extends Item {
 
         if (getClass() != o.getClass()) return false;
 
-        Wall p = (Wall) o;
+        Element p = (Element) o;
 
         return position.equals(p.getPosition());
 
