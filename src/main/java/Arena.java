@@ -1,26 +1,34 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import java.net.ServerSocket;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Arena {
     int width;
     int height;
-    BackGround background = new BackGround(70, 20, " ","#3f3832");
-    Player player = new Player(new Position(0,0), "C", "#ffffff");
-    List<Wall> walls;
+    BackGround background;
+    Player player = new Player(new Position(0,0), "C", "#FFFF33");
+    HashSet<Wall> walls;
+    boolean pressed_key = false;
 
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+
+        this.background = new BackGround(70, 20, " ","#3f3832");
+
         this.walls = createWalls();
     }
 
     public void draw(TextGraphics graphics) {
         background.draw(graphics);
-        player.move(background.getWidth(), background.getHeight());
+
+        this.move();
+        pressed_key = false;
 
         for (Wall wall : walls) {
             wall.draw(graphics);
@@ -29,8 +37,27 @@ public class Arena {
         player.draw(graphics);
     }
 
-    private List<Wall> createWalls() {
-        List<Wall> walls = new ArrayList<>();
+    public void move()
+    {
+        for(Wall wall: walls)
+        {
+            if(this.player.getPosition().equals(wall.getPosition())) {
+
+                if(pressed_key)
+                    break;
+                else
+                    return;
+            }
+
+        }
+
+
+        walls.add(new Wall(" ", "#000080",this.player.getPosition()));
+        player.move(background.getWidth(), background.getHeight());
+    }
+
+    private HashSet<Wall> createWalls() {
+        HashSet<Wall> walls = new HashSet();
 
         for (int c = 0; c < width; c++) {
             walls.add(new Wall(" ", "#000080", new Position(c, 0)));
@@ -53,7 +80,6 @@ public class Arena {
                 break;
             case ArrowLeft:
                 this.player.setDirection(Player.DIRECTION.WEST);
-                ;
                 break;
             case ArrowRight:
                 this.player.setDirection(Player.DIRECTION.EAST);
@@ -62,6 +88,10 @@ public class Arena {
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
         }
+
+        pressed_key = true;
+
+
     }
 
 }

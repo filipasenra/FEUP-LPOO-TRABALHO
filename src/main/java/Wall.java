@@ -1,5 +1,4 @@
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
@@ -18,8 +17,23 @@ public class Wall extends Item {
 
     @Override
     public void draw(TextGraphics graphics) {
+
         graphics.setBackgroundColor(TextColor.Factory.fromString(this.color));
-        graphics.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(position.getX()+1, position.getY()+1), this.symbol.charAt(0));
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), this.symbol);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+
+        if (o == null) return false;
+
+        if (getClass() != o.getClass()) return false;
+
+        Wall p = (Wall) o;
+
+        return position.equals(p.getPosition());
 
     }
 }
