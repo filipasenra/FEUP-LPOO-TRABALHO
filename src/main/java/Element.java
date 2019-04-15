@@ -14,14 +14,7 @@ public abstract class Element extends Item {
         this.position = position;
     }
 
-    @Override
-    public void draw(TextGraphics graphics) {
-
-        graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), this.symbol);
-
-    }
+    public abstract void draw(TextGraphics graphics);
 
     public void setPosition(Position position)
     {
@@ -33,5 +26,18 @@ public abstract class Element extends Item {
         return this.position;
     }
 
-    public abstract boolean move(int x, int y);
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+
+        if (o == null) return false;
+
+        if (getClass() != o.getClass()) return false;
+
+        Wall p = (Wall) o;
+
+        return position.equals(p.getPosition());
+
+    }
 }

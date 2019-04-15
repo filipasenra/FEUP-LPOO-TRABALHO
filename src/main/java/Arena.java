@@ -42,7 +42,6 @@ public class Arena {
         for(Wall wall: walls)
         {
             if(this.player.getPosition().equals(wall.getPosition())) {
-
                 if(pressed_key)
                     break;
                 else
@@ -51,8 +50,7 @@ public class Arena {
 
         }
 
-
-        walls.add(new Wall(" ", "#000080",this.player.getPosition()));
+        walls.add(new Wall(this.player.getPosition(), " ", "#000080"));
         player.move(background.getWidth(), background.getHeight());
     }
 
@@ -60,13 +58,13 @@ public class Arena {
         HashSet<Wall> walls = new HashSet();
 
         for (int c = 0; c < width; c++) {
-            walls.add(new Wall(" ", "#000080", new Position(c, 0)));
-            walls.add(new Wall(" ", "#000080", new Position(c, height-1)));
+            walls.add(new Wall(new Position(c, 0), " ", "#000080"));
+            walls.add(new Wall(new Position(c, height-1), " ", "#000080"));
         }
 
         for (int r = 0; r < height - 1; r++) {
-            walls.add(new Wall(" ", "#000080", new Position( 0, r)));
-            walls.add(new Wall(" ", "#000080", new Position( width-1, r)));
+            walls.add(new Wall( new Position( 0, r), " ", "#000080"));
+            walls.add(new Wall( new Position( width-1, r), " ", "#000080"));
         }
 
         return walls;

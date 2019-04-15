@@ -1,17 +1,21 @@
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Wall extends Element {
+public abstract class MovingElement extends Element {
 
-    public Wall(Position position, String symbol, String color) {
+    public MovingElement(Position position, String symbol, String color) {
         super(position, symbol, color);
     }
 
-    @Override
     public void draw(TextGraphics graphics) {
 
-        graphics.setBackgroundColor(TextColor.Factory.fromString(this.color));
+        graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
+        graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), this.symbol);
+
     }
+
+    abstract boolean move(int x, int y);
 }
