@@ -3,7 +3,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Player extends MovingElement{
+public class Player extends Element{
 
     enum DIRECTION {
         NORTH,
