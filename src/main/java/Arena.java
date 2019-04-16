@@ -13,6 +13,7 @@ public class Arena {
     BackGround background;
     Player player = new Player(new Position(0,0), "C", "#FFFF33");
     boolean pressed_key = false;
+    boolean outside_wall = false;
     Wall wall;
 
     public Arena(int width, int height) {
@@ -36,10 +37,29 @@ public class Arena {
 
     public void move()
     {
-        if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) && !pressed_key)
-            return;
+        //If the player is inside the wall
+        if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
+        {
+            //If it has returned from the sea, let's finish the construction
+            if(outside_wall)
+                wall.fillWall();
 
-        wall.addWall(player.getPosition().getX(), player.getPosition().getY());
+            //The player is in the wall
+            outside_wall = false;
+
+            //If it has not pressed any key, it doesn't move
+            if(!pressed_key)
+                return;
+
+            wall.addWall(player.getPosition().getX(), player.getPosition().getY());
+            player.move(background.getWidth(), background.getHeight());
+            return;
+        }
+
+        //The player is in the sea
+        outside_wall = true;
+
+        wall.addPath(player.getPosition().getX(), player.getPosition().getY());
         player.move(background.getWidth(), background.getHeight());
     }
 
@@ -61,8 +81,7 @@ public class Arena {
         }
 
         pressed_key = true;
-
-
     }
+
 
 }
