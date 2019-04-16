@@ -13,6 +13,7 @@ public class Player extends Element{
     }
 
     private DIRECTION direction = DIRECTION.EAST;
+    int speed = 1;
 
     public Player(Position position, String symbol, String color) {
         super(position, symbol, color);
@@ -34,30 +35,20 @@ public class Player extends Element{
 
         switch (direction) {
             case NORTH:
-                position = new Position(this.position.getX(), this.position.getY() - 1);
+                position = new Position(this.position.getX(), this.position.getY() - speed);
                 break;
             case SOUTH:
-                position = new Position(this.position.getX(), this.position.getY() + 1);
+                position = new Position(this.position.getX(), this.position.getY() + speed);
                 break;
             case WEST:
-                position = new Position(this.position.getX() - 1, this.position.getY());
+                position = new Position(this.position.getX() - speed, this.position.getY());
                 break;
             case EAST:
-                position = new Position(this.position.getX() + 1, this.position.getY());
+                position = new Position(this.position.getX() + speed, this.position.getY());
                 break;
         }
 
         return position;
-
-        /*if(position.getX() < 0 || position.getX() >= x)
-            return false;
-
-        if(position.getY() < 0 || position.getY() >= y)
-            return false;
-
-        this.setPosition(position);
-
-        return true;*/
 
     }
 }
