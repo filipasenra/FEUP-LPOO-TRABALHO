@@ -28,9 +28,9 @@ public class Player extends Element{
     }
 
     @Override
-    public boolean move(int x, int y) {
+    public Position move() {
 
-        Position position;
+        Position position = new Position(0, 0);
 
         switch (direction) {
             case NORTH:
@@ -45,12 +45,11 @@ public class Player extends Element{
             case EAST:
                 position = new Position(this.position.getX() + 1, this.position.getY());
                 break;
-
-            default:
-                return false;
         }
 
-        if(position.getX() < 0 || position.getX() >= x)
+        return position;
+
+        /*if(position.getX() < 0 || position.getX() >= x)
             return false;
 
         if(position.getY() < 0 || position.getY() >= y)
@@ -58,7 +57,7 @@ public class Player extends Element{
 
         this.setPosition(position);
 
-        return true;
+        return true;*/
 
     }
 }

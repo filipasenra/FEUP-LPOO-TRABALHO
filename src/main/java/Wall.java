@@ -66,10 +66,12 @@ public class Wall extends Item {
         //Variables to count the numbers of squares in each polygons of side 1 or side 2
         int side1 = 0;
         int side2 = 0;
+        int side3 = 0;
+        int side4 = 0;
 
         //Runs line by line, checking for the construction line
-        //When it founds the construction line, checks the upper, down, left and right side
-        for (int i = 1; i < width - 1; i++) {
+        //When it founds the construction line, checks the upper, down and then left and right side
+        for (int i = 0; i < width; i++) {
             for (int j = 1; j < height - 1; j++) {
 
                 if (walls_array[i][j] == TYPE.Construction) {
@@ -81,9 +83,17 @@ public class Wall extends Item {
                     if (walls_array[i][j + 1] == TYPE.Sea) {
                         side2 += apply(i, j + 1, TYPE.Side2);
                     }
+                }
+            }
+        }
+
+        for (int i = 1; i < width - 1; i++) {
+            for (int j = 0; j < height; j++) {
+
+                if (walls_array[i][j] == TYPE.Construction) {
 
                     if (walls_array[i - 1][j] == TYPE.Sea) {
-                        side1 += apply(i - 1, j , TYPE.Side1);
+                        side1 += apply(i - 1, j, TYPE.Side1);
                     }
 
                     if (walls_array[i + 1][j] == TYPE.Sea) {

@@ -52,7 +52,7 @@ public class Arena {
                 return;
 
             wall.addWall(player.getPosition().getX(), player.getPosition().getY());
-            player.move(background.getWidth(), background.getHeight());
+            playerMove();
             return;
         }
 
@@ -60,7 +60,20 @@ public class Arena {
         outside_wall = true;
 
         wall.addPath(player.getPosition().getX(), player.getPosition().getY());
-        player.move(background.getWidth(), background.getHeight());
+        playerMove();
+    }
+
+    private void playerMove()
+    {
+        Position position = player.move();
+
+        if(position.getX() < 0 || position.getX() >= width)
+            return;
+
+        if(position.getY() < 0 || position.getY() >= height)
+            return;
+
+        this.player.setPosition(position);
     }
 
     public void processKey(KeyStroke key) {

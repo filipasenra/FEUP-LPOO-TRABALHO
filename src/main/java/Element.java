@@ -47,5 +47,5 @@ public abstract class Element extends Item {
 
     }
 
-    abstract boolean move(int x, int y);
+    abstract Position move();
 }
