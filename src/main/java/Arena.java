@@ -79,10 +79,12 @@ public class Arena {
         this.player.setPosition(position);
     }
 
+    //The monster walk in diagonals and changes direction every time he hits a wall
     private boolean monsterMove()
     {
         Position position = monster.move();
 
+        //If the monster touched a wall in construction stop the game
         if (!checkMove(position))
             return false;
 
@@ -107,6 +109,7 @@ public class Arena {
         return true;
     }
 
+    //Check if a monster touched a construction wall
     private boolean checkMove (Position position) {
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
             return false;
