@@ -12,7 +12,7 @@ public class Game {
     private Screen screen;
     private Arena arena;
     private KeyStroke key;
-    int FPS = 250; //Frames per seconds (controls the speed of the Player)
+    int FPS = 300; //Frames per seconds (controls the speed of the Player)
 
     public Game() {
         try {

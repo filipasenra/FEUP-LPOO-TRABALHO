@@ -35,7 +35,8 @@ public class Arena {
 
     public void move()
     {
-        monsterMove();
+        if (!monsterMove())
+            return;
 
         //If the player is inside the wall
         if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
@@ -78,31 +79,42 @@ public class Arena {
         this.player.setPosition(position);
     }
 
-    private void monsterMove()
+    private boolean monsterMove()
     {
         Position position = monster.move();
 
-        if (!(wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Sea)) {
+        if (!checkMove(position))
+            return false;
+
+        if (wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Sides);
         }
 
-        else if (!(wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Sea)) {
+        else if (wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Sides);
         }
 
-        else if (!(wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Sea)) {
+        else if (wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
 
-        else if (!(wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Sea)) {
+        else if (wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
 
         this.monster.setPosition(position);
+
+        return true;
+    }
+
+    private boolean checkMove (Position position) {
+        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
+            return false;
+        }
+        return true;
     }
 
     public void processKey(KeyStroke key) {
-
         switch (key.getKeyType()) {
             case ArrowDown:
                 this.player.setDirection(Player.DIRECTION.SOUTH);
@@ -117,9 +129,6 @@ public class Arena {
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
         }
-
         pressed_key = true;
     }
-
-
 }
