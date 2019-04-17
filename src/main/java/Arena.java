@@ -1,11 +1,5 @@
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-
-import java.lang.reflect.Array;
-import java.net.ServerSocket;
-import java.util.*;
 
 public class Arena {
     int width;
@@ -15,10 +9,13 @@ public class Arena {
     boolean pressed_key = false;
     boolean outside_wall = false;
     Wall wall;
+    Monster monster;
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+
+        monster = new Monster(new Position(7, 7), "X", "#FFCCD5");
 
         wall = new Wall(70, 20, " ", "#000080");
 
@@ -33,10 +30,13 @@ public class Arena {
 
         wall.draw(graphics);
         player.draw(graphics);
+        monster.draw(graphics);
     }
 
     public void move()
     {
+        monsterMove();
+
         //If the player is inside the wall
         if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
         {
@@ -53,6 +53,7 @@ public class Arena {
 
             wall.addWall(player.getPosition().getX(), player.getPosition().getY());
             playerMove();
+
             return;
         }
 
@@ -61,6 +62,7 @@ public class Arena {
 
         wall.addPath(player.getPosition().getX(), player.getPosition().getY());
         playerMove();
+
     }
 
     private void playerMove()
@@ -74,6 +76,29 @@ public class Arena {
             return;
 
         this.player.setPosition(position);
+    }
+
+    private void monsterMove()
+    {
+        Position position = monster.move();
+
+        if (!(wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Sea)) {
+            monster.changeMov(Monster.TYPE_WALL.Sides);
+        }
+
+        else if (!(wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Sea)) {
+            monster.changeMov(Monster.TYPE_WALL.Sides);
+        }
+
+        else if (!(wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Sea)) {
+            monster.changeMov(Monster.TYPE_WALL.Tops);
+        }
+
+        else if (!(wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Sea)) {
+            monster.changeMov(Monster.TYPE_WALL.Tops);
+        }
+
+        this.monster.setPosition(position);
     }
 
     public void processKey(KeyStroke key) {

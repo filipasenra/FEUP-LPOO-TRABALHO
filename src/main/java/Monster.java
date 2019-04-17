@@ -9,7 +9,6 @@ public class Monster extends Element {
         super(position, symbol, color);
     }
 
-
     public void changeMov(TYPE_WALL type_wall)
     {
         switch (type_wall)
@@ -25,7 +24,6 @@ public class Monster extends Element {
 
     @Override
     Position move() {
-
         return new Position(position.getX() + speed_x, position.getY() + speed_y);
     }
 
