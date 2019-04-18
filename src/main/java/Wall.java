@@ -28,7 +28,6 @@ public class Wall extends Item {
                 walls_array[i][j] = TYPE.Sea;
             }
         }
-
     }
 
     @Override

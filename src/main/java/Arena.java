@@ -123,20 +123,19 @@ public class Arena {
             monster.changeMov(Monster.TYPE_WALL.Sides);
         }
 
-        else if (wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Wall) {
+        if (wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Sides);
         }
 
-        else if (wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Wall) {
+        if (wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
 
-        else if (wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Wall) {
+        if (wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
 
         return position;
-
     }
 
     //Check if a monster touched a construction wall
