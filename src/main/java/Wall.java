@@ -2,6 +2,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.List;
+
 public class Wall extends Item {
 
     enum TYPE {Wall, Sea, Construction, Side1, Side2}
@@ -28,6 +30,10 @@ public class Wall extends Item {
                 walls_array[i][j] = TYPE.Sea;
             }
         }
+    }
+
+    public TYPE[][] getWalls_array() {
+        return walls_array;
     }
 
     @Override
@@ -60,13 +66,11 @@ public class Wall extends Item {
     }
 
 
-    public void fillWall() {
+    public void fillWall(List<Monster> monsters) {
 
         //Variables to count the numbers of squares in each polygons of side 1 or side 2
         int side1 = 0;
         int side2 = 0;
-        int side3 = 0;
-        int side4 = 0;
 
         //Runs line by line, checking for the construction line
         //When it founds the construction line, checks the upper, down and then left and right side
@@ -107,10 +111,29 @@ public class Wall extends Item {
         //2. The smallest polygon into wall
         //3. And the other side of the polygon into see
         if (side1 < side2)
-            eraseConstruction(TYPE.Side1);
-        else {
-            eraseConstruction(TYPE.Side2);
+        {
+            if(checkToFill(monsters, TYPE.Side1))
+                eraseConstruction(TYPE.Side1);
+            else
+                eraseConstruction(TYPE.Construction);
         }
+        else {
+            if(checkToFill(monsters, TYPE.Side2))
+                eraseConstruction(TYPE.Side2);
+            else
+                eraseConstruction(TYPE.Construction);
+        }
+    }
+
+    private boolean checkToFill( List<Monster> monsters, TYPE side)
+    {
+        for(Monster monster : monsters)
+        {
+            if (walls_array[monster.getPosition().getX()][monster.getPosition().getY()] == side)
+                return false;
+        }
+
+        return true;
     }
 
     private void eraseConstruction(TYPE side) {

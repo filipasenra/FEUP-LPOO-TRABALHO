@@ -14,6 +14,7 @@ public class Game {
     private KeyStroke key;
     int FPS = 450; //Frames per seconds (controls the speed of the Player)
 
+
     public Game() {
         try {
             int width = 70;
@@ -49,14 +50,18 @@ public class Game {
                     continue;
 
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
-                    screen.close();
+                    break;
 
                 processKey(key);
 
                 if(key.getKeyType() == KeyType.EOF)
                     break;
 
-            } while (true);
+            } while (!arena.isGameOver());
+
+            TimeUnit.SECONDS.sleep(2);
+
+            screen.close();
 
         } catch (IOException e) {
             e.printStackTrace();

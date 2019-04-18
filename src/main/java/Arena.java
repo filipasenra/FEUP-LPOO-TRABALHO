@@ -10,10 +10,11 @@ public class Arena {
     int height;
     BackGround background;
     Player player = new Player(new Position(0,0), "C", "#FFFF33");
-    boolean pressed_key = false;
-    boolean outside_wall = false;
     Wall wall;
     List<Monster> monsters = new ArrayList<>();
+
+
+    boolean gameOver = false;
 
     public Arena(int width, int height) {
         this.width = width;
@@ -21,8 +22,8 @@ public class Arena {
 
         createMonsters(2);
 
-        wall = new Wall(70, 20, " ", "#000080");
-        this.background = new BackGround(70, 20, " ","#3f3832");
+        wall = new Wall(width, height, " ", "#000080");
+        this.background = new BackGround(width, height, " ","#3f3832");
     }
 
     private void createMonsters(int no_monsters) {
@@ -30,24 +31,20 @@ public class Arena {
             monsters.add(new Monster(generatePositions(), "X", "#FFCCD5"));
     }
 
-    private Position generatePositions() {
+    public Position generatePositions() {
         // create instance of Random class
         Random rand = new Random();
 
-        int x = rand.nextInt(70);
-        int y = rand.nextInt(20);
+        int x = rand.nextInt(width - 2) + 1;
+        int y = rand.nextInt(height - 2) + 1;
 
-        if (x == 0 || y ==0)
-            return generatePositions();
-        else
-            return new Position(x, y);
+        return new Position(x, y);
     }
 
     public void draw(TextGraphics graphics) {
         background.draw(graphics);
 
         this.move();
-        pressed_key = false;
 
         wall.draw(graphics);
         player.draw(graphics);
@@ -61,63 +58,52 @@ public class Arena {
     public void move()
     {
         for (Monster monster: monsters) {
-            Position pos = monsterMove(monster);
-            if (pos == null)
-                return;
+            Position pos = monster.move();
+
+            if (canMonsterMove(pos))
+            {
+                monsterMove(monster);
+            }
             else
-                monster.setPosition(pos);
+                gameOver = true;
         }
 
-
-        //If the player is inside the wall
-        if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
-        {
-            //If it has returned from the sea, let's finish the construction
-            if(outside_wall)
-                wall.fillWall();
-
-            //The player is in the wall
-            outside_wall = false;
-
-            //If it has not pressed any key, it doesn't move
-            if(!pressed_key)
-                return;
-
-            wall.addWall(player.getPosition().getX(), player.getPosition().getY());
-            playerMove();
-
-            return;
-        }
-
-        //The player is in the sea
-        outside_wall = true;
-
-        wall.addPath(player.getPosition().getX(), player.getPosition().getY());
-        playerMove();
+        playerMove(player.getPosition());
 
     }
 
-    private void playerMove()
+    private boolean canPlayerMove(Position position)
     {
-        Position position = player.move();
-
         if(position.getX() < 0 || position.getX() >= width)
-            return;
+            return false;
 
         if(position.getY() < 0 || position.getY() >= height)
+            return false;
+
+        return true;
+    }
+
+    private void playerMove(Position position)
+    {
+        if(wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
             return;
 
-        this.player.setPosition(position);
+        wall.addPath(position.getX(), position.getY());
+
+        if(canPlayerMove(player.move()))
+            player.setPosition(player.move());
+
+        if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
+            wall.fillWall(monsters);
+
     }
 
     //The monsters walk in diagonals and change direction every time he hits a wall
-    private Position monsterMove(Monster monster)
+    private void monsterMove(Monster monster)
     {
         Position position = monster.move();
 
-        //If the monster touched a wall in construction stop the game
-        if (!checkMove(position))
-            return null;
+        monster.setPosition(position);
 
         //Check monsters' colisions with the walls
         if (wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Wall) {
@@ -135,12 +121,11 @@ public class Arena {
         if (wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
-
-        return position;
     }
 
     //Check if a monster touched a construction wall
-    private boolean checkMove (Position position) {
+    private boolean canMonsterMove (Position position) {
+
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
             return false;
         }
@@ -162,6 +147,15 @@ public class Arena {
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
         }
-        pressed_key = true;
+
+        if(wall.getWall(player.position.getX(), player.position.getY()) == Wall.TYPE.Wall)
+        {
+            if(canPlayerMove(player.move()))
+                player.setPosition(player.move());
+        }
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 }
