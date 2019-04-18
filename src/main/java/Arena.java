@@ -1,6 +1,10 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Arena {
     int width;
     int height;
@@ -9,17 +13,34 @@ public class Arena {
     boolean pressed_key = false;
     boolean outside_wall = false;
     Wall wall;
-    Monster monster;
+    List<Monster> monsters = new ArrayList<>();
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
 
-        monster = new Monster(new Position(7, 7), "X", "#FFCCD5");
+        createMonsters(2);
 
         wall = new Wall(70, 20, " ", "#000080");
-
         this.background = new BackGround(70, 20, " ","#3f3832");
+    }
+
+    private void createMonsters(int no_monsters) {
+        for (int i=0; i<no_monsters; i++)
+            monsters.add(new Monster(generatePositions(), "X", "#FFCCD5"));
+    }
+
+    private Position generatePositions() {
+        // create instance of Random class
+        Random rand = new Random();
+
+        int x = rand.nextInt(70);
+        int y = rand.nextInt(20);
+
+        if (x == 0 || y ==0)
+            return generatePositions();
+        else
+            return new Position(x, y);
     }
 
     public void draw(TextGraphics graphics) {
@@ -30,13 +51,23 @@ public class Arena {
 
         wall.draw(graphics);
         player.draw(graphics);
-        monster.draw(graphics);
+
+        for (Monster monster: monsters) {
+            monster.draw(graphics);
+        }
+
     }
 
     public void move()
     {
-        if (!monsterMove())
-            return;
+        for (Monster monster: monsters) {
+            Position pos = monsterMove(monster);
+            if (pos == null)
+                return;
+            else
+                monster.setPosition(pos);
+        }
+
 
         //If the player is inside the wall
         if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
@@ -79,14 +110,14 @@ public class Arena {
         this.player.setPosition(position);
     }
 
-    //The monster walk in diagonals and changes direction every time he hits a wall
-    private boolean monsterMove()
+    //The monsters walk in diagonals and change direction every time he hits a wall
+    private Position monsterMove(Monster monster)
     {
         Position position = monster.move();
 
         //If the monster touched a wall in construction stop the game
         if (!checkMove(position))
-            return false;
+            return null;
 
         if (wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Sides);
@@ -104,9 +135,8 @@ public class Arena {
             monster.changeMov(Monster.TYPE_WALL.Tops);
         }
 
-        this.monster.setPosition(position);
+        return position;
 
-        return true;
     }
 
     //Check if a monster touched a construction wall
