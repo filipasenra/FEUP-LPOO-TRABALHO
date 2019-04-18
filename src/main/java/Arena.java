@@ -119,6 +119,7 @@ public class Arena {
         if (!checkMove(position))
             return null;
 
+        //Check monsters' colisions with the walls
         if (wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Wall) {
             monster.changeMov(Monster.TYPE_WALL.Sides);
         }
