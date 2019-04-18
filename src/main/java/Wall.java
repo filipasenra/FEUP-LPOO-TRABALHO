@@ -36,6 +36,10 @@ public class Wall extends Item {
         return walls_array;
     }
 
+    public void setWalls_array(TYPE[][] walls_array) {
+        this.walls_array = walls_array;
+    }
+
     @Override
     public void draw(TextGraphics graphics) {
 
