@@ -57,6 +57,8 @@ public class Arena {
 
     public void move()
     {
+        playerMove(player.getPosition());
+
         for (Monster monster: monsters) {
             Position pos = monster.move();
 
@@ -67,8 +69,6 @@ public class Arena {
             else
                 gameOver = true;
         }
-
-        playerMove(player.getPosition());
 
     }
 
@@ -124,11 +124,14 @@ public class Arena {
     }
 
     //Check if a monster touched a construction wall
-    private boolean canMonsterMove (Position position) {
+    public boolean canMonsterMove (Position position) {
 
-        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
+            System.out.println(player.getPosition().getX());
+
+        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction || player.getPosition().equals(position)) {
             return false;
         }
+
         return true;
     }
 

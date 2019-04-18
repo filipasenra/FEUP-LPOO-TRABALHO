@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 
 public class WallTest {
 
@@ -56,9 +58,7 @@ public class WallTest {
         showArray(result_);
         System.out.println(" ");*/
 
-        boolean result = Arrays.deepEquals(result_, expected);
-
-        assertEquals(true, result);
+        assertTrue(Arrays.deepEquals(expected, result_));
 
     }
 
@@ -72,11 +72,7 @@ public class WallTest {
 
         wall.setWalls_array(begging);
 
-        List<Monster> monsters = new ArrayList<>();
-        Monster monster = new Monster(new Position(1, 1), " ", "ffffff");
-        monsters.add(monster);
-
-        wall.fillWall(monsters);
+        wall.fillWall(new ArrayList<>());
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
@@ -85,9 +81,7 @@ public class WallTest {
         showArray(result_);
         System.out.println(" ");*/
 
-        boolean result = Arrays.deepEquals(result_, begging);
-
-        assertEquals(true, result);
+        assertTrue(Arrays.deepEquals(expected, result_));
 
     }
 
@@ -114,9 +108,8 @@ public class WallTest {
         showArray(result_);
         System.out.println(" ");*/
 
-        boolean result = Arrays.deepEquals(result_, begging);
+        assertTrue(Arrays.deepEquals(begging, result_));
 
-        assertEquals(true, result);
 
     }
 
@@ -143,9 +136,7 @@ public class WallTest {
         showArray(result_);
         System.out.println(" ");
 
-        boolean result = Arrays.deepEquals(result_, begging);
-
-        assertEquals(true, result);
+        assertTrue(Arrays.deepEquals(begging, result_));
 
     }
 }
