@@ -126,8 +126,6 @@ public class Arena {
     //Check if a monster touched a construction wall
     public boolean canMonsterMove (Position position) {
 
-            System.out.println(player.getPosition().getX());
-
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction || player.getPosition().equals(position)) {
             return false;
         }
