@@ -128,8 +128,8 @@ public class WallTest {
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
         wall.setWalls_array(begging);
-        showArray(begging);
-        System.out.println(" ");
+        /*showArray(begging);
+        System.out.println(" ");*/
 
         List<Monster> monsters = new ArrayList<>();
         Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
@@ -146,8 +146,8 @@ public class WallTest {
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
 
-        showArray(result_);
-        System.out.println(" ");
+        /*showArray(result_);
+        System.out.println(" ");*/
 
         assertTrue(Arrays.deepEquals(expected, result_));
 

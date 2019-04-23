@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -22,7 +23,7 @@ public class ArenaTest {
         when(player.getPosition()).thenReturn(new Position(1, 1));
         when(wall.getWall(any(int.class), any(int.class))).thenReturn(Wall.TYPE.Construction);
 
-        assertFalse(arena.checkCollision(new Position(1, 1)));
+        assertTrue(arena.checkCollision(new Position(1, 1)));
     }
 
     @Test
