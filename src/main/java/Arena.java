@@ -9,21 +9,30 @@ public class Arena {
     int width;
     int height;
     BackGround background;
-    Player player = new Player(new Position(0,0), "C", "#FFFF33");
+    Player player;
     Wall wall;
     List<Monster> monsters = new ArrayList<>();
 
-
     boolean gameOver = false;
+    boolean finishLevel = false;
 
-    public Arena(int width, int height) {
+    private void init(int width, int height) {
         this.width = width;
         this.height = height;
-
         createMonsters(2);
-
-        wall = new Wall(width, height, " ", "#000080");
         this.background = new BackGround(width, height, " ","#3f3832");
+    }
+
+    public Arena(int width, int height, Player p, Wall w) {
+        init(width,height);
+        this.player = p;
+        this.wall = w;
+    }
+
+    public Arena(int width, int height) {
+        init(width,height);
+        player = new Player(new Position(0,0), "C", "#FFFF33");
+        wall = new Wall(width, height, " ", "#000080");
     }
 
     private void createMonsters(int no_monsters) {
@@ -62,13 +71,14 @@ public class Arena {
         for (Monster monster: monsters) {
             Position pos = monster.move();
 
-            if (canMonsterMove(pos))
-            {
+            if(wall.getWall(pos.getX(), pos.getY()) == Wall.TYPE.Sea)
                 monsterMove(monster);
-            }
-            else
+            else if (checkCollision(pos))
                 gameOver = true;
         }
+
+        if(wall.percentage_fill() >= 80)
+            finishLevel = true;
 
     }
 
@@ -124,13 +134,13 @@ public class Arena {
     }
 
     //Check if a monster touched a construction wall
-    public boolean canMonsterMove (Position position) {
+    public boolean checkCollision (Position position) {
 
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction || player.getPosition().equals(position)) {
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public void processKey(KeyStroke key) {
@@ -158,5 +168,9 @@ public class Arena {
 
     public boolean isGameOver() {
         return gameOver;
+    }
+
+    public boolean isFinishLevel() {
+        return finishLevel;
     }
 }

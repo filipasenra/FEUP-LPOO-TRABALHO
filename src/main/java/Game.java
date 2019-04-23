@@ -57,7 +57,7 @@ public class Game {
                 if(key.getKeyType() == KeyType.EOF)
                     break;
 
-            } while (!arena.isGameOver());
+            } while (!arena.isGameOver() && !arena.isFinishLevel());
 
             TimeUnit.SECONDS.sleep(2);
 

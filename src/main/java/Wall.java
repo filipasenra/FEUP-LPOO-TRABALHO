@@ -11,6 +11,7 @@ public class Wall extends Item {
     TYPE walls_array[][];
     int width;
     int height;
+    int n_wall = 0;
 
     public Wall(int width, int height, String symbol, String color) {
         super(symbol, color);
@@ -114,19 +115,19 @@ public class Wall extends Item {
         //1. We transform the construction into wall
         //2. The smallest polygon into wall
         //3. And the other side of the polygon into see
-        if (side1 < side2)
-        {
+        //if (side1 < side2)
+        //{
             if(checkToFill(monsters, TYPE.Side1))
                 eraseConstruction(TYPE.Side1);
             else
                 eraseConstruction(TYPE.Construction);
-        }
-        else {
+        //}
+        //else {
             if(checkToFill(monsters, TYPE.Side2))
                 eraseConstruction(TYPE.Side2);
             else
                 eraseConstruction(TYPE.Construction);
-        }
+        //}
     }
 
     private boolean checkToFill( List<Monster> monsters, TYPE side)
@@ -144,7 +145,10 @@ public class Wall extends Item {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if (walls_array[i][j] == TYPE.Construction || (walls_array[i][j] == side))
+                {
                     walls_array[i][j] = TYPE.Wall;
+                    n_wall++;
+                }
                 else if (walls_array[i][j] != TYPE.Wall)
                     walls_array[i][j] = TYPE.Sea;
             }
@@ -165,5 +169,12 @@ public class Wall extends Item {
         }
 
         return n;
+    }
+
+    public double percentage_fill()
+    {
+        int total_area = (width-1)*(height-1);
+
+        return (n_wall*100.0)/total_area;
     }
 }
