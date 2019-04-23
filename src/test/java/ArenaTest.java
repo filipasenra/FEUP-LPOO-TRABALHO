@@ -12,8 +12,8 @@ public class ArenaTest {
     Player player;
     Wall wall;
 
-    @Before
-    public void setUp()
+    @Test
+    public void arenaCollisionTest()
     {
         player = Mockito.mock(Player.class);
         wall = Mockito.mock(Wall.class);
@@ -21,12 +21,13 @@ public class ArenaTest {
 
         when(player.getPosition()).thenReturn(new Position(1, 1));
         when(wall.getWall(any(int.class), any(int.class))).thenReturn(Wall.TYPE.Construction);
+
+        assertFalse(arena.checkCollision(new Position(1, 1)));
     }
 
     @Test
-    public void arenaCollisionTest()
+    public void checkPlayerWall()
     {
-        //assertFalse(arena.canMonsterMove(new Position(1, 1)));
     }
 
 }

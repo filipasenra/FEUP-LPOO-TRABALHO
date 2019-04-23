@@ -78,7 +78,9 @@ public class Arena {
         }
 
         if(wall.percentage_fill() >= 80)
+        {
             finishLevel = true;
+        }
 
     }
 
@@ -93,17 +95,16 @@ public class Arena {
         return true;
     }
 
-    private void playerMove(Position position)
-    {
-        if(wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
+    private void playerMove(Position position) {
+        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
             return;
 
         wall.addPath(position.getX(), position.getY());
 
-        if(canPlayerMove(player.move()))
+        if (canPlayerMove(player.move()))
             player.setPosition(player.move());
 
-        if(wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
+        if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
             wall.fillWall(monsters);
 
     }

@@ -19,9 +19,9 @@ public class WallTest {
     {
 
         expected = new Wall.TYPE [][] {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
-                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
-                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
-                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
     }
 
@@ -30,9 +30,14 @@ public class WallTest {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[0].length; j++) {
                 if (array[i][j] == Wall.TYPE.Wall)
-                    System.out.print("1 ");
+                    System.out.print("W ");
+                else if (array[i][j] == Wall.TYPE.Sea)
+                    System.out.print(("S "));
+                else if (array[i][j] == Wall.TYPE.Construction)
+                    System.out.print(("C "));
                 else
-                    System.out.print(("2 "));
+                    System.out.print(("Y "));
+
             }
 
             System.out.println(" ");
@@ -53,7 +58,7 @@ public class WallTest {
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
-       /* showArray(begging);
+        /*showArray(begging);
         System.out.println(" ");
         showArray(result_);
         System.out.println(" ");*/
@@ -72,13 +77,14 @@ public class WallTest {
 
         wall.setWalls_array(begging);
 
+        /*showArray(begging);
+        System.out.println(" ");*/
+
         wall.fillWall(new ArrayList<>());
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
-        /*showArray(begging);
-        System.out.println(" ");
-        showArray(result_);
+        /*showArray(result_);
         System.out.println(" ");*/
 
         assertTrue(Arrays.deepEquals(expected, result_));
@@ -122,6 +128,8 @@ public class WallTest {
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
         wall.setWalls_array(begging);
+        showArray(begging);
+        System.out.println(" ");
 
         List<Monster> monsters = new ArrayList<>();
         Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
@@ -131,12 +139,17 @@ public class WallTest {
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
-        showArray(begging);
-        System.out.println(" ");
+        expected = new Wall.TYPE [][] {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
+
+
         showArray(result_);
         System.out.println(" ");
 
-        assertTrue(Arrays.deepEquals(begging, result_));
+        assertTrue(Arrays.deepEquals(expected, result_));
 
     }
 }
