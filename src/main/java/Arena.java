@@ -102,15 +102,11 @@ public class Arena {
 
         }
 
-
         wall.addPath(position.getX(), position.getY());
 
         if (canPlayerMove(player.move()))
             player.setPosition(player.move());
-
-
-
-
+        
         if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
             wall.fillWall(monsters);
     }
