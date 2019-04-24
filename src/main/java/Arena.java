@@ -96,13 +96,20 @@ public class Arena {
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
             return;
 
-        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction)
-            gameOver=true;
+        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
+            gameOver = true;
+            return;
+
+        }
+
 
         wall.addPath(position.getX(), position.getY());
 
         if (canPlayerMove(player.move()))
             player.setPosition(player.move());
+
+
+
 
         if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
             wall.fillWall(monsters);

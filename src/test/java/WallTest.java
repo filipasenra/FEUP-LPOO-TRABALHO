@@ -176,7 +176,6 @@ public class WallTest {
         wall.fillWall(new ArrayList<>());
 
         assertEquals(100.0, wall.percentage_fill());
-
     }
 
     @Test
@@ -197,7 +196,4 @@ public class WallTest {
 
         assertEquals(75.0, wall.percentage_fill());
     }
-
-
-
 }
