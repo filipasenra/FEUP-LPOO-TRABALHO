@@ -1,14 +1,12 @@
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class ArenaTest {
-
     Arena arena;
     Player player;
     Wall wall;
@@ -29,6 +27,7 @@ public class ArenaTest {
     @Test
     public void checkPlayerWall()
     {
+
     }
 
 }

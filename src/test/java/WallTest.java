@@ -15,9 +15,8 @@ public class WallTest {
     Wall.TYPE [][] expected;
 
     @Before
-    public void begging()
+    public void start()
     {
-
         expected = new Wall.TYPE [][] {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
@@ -46,38 +45,37 @@ public class WallTest {
 
     @Test
     public void fillingWallTest() {
-        Wall.TYPE [][] begging = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        wall.setWalls_array(begging);
+        wall.setWalls_array(beginning);
 
         wall.fillWall(new ArrayList<>());
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
-        /*showArray(begging);
+        /*showArray(beginning);
         System.out.println(" ");
         showArray(result_);
         System.out.println(" ");*/
 
         assertTrue(Arrays.deepEquals(expected, result_));
-
     }
 
     @Test
     public void fillingWallTestV2(){
-        Wall.TYPE [][] begging = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        wall.setWalls_array(begging);
+        wall.setWalls_array(beginning);
 
-        /*showArray(begging);
+        /*showArray(beginning);
         System.out.println(" ");*/
 
         wall.fillWall(new ArrayList<>());
@@ -93,13 +91,13 @@ public class WallTest {
 
     @Test
     public void fillingWallTestWithMonster(){
-        Wall.TYPE [][] begging = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        wall.setWalls_array(begging);
+        wall.setWalls_array(beginning);
 
         List<Monster> monsters = new ArrayList<>();
         Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
@@ -109,26 +107,26 @@ public class WallTest {
 
         Wall.TYPE [][] result_ = wall.getWalls_array();
 
-        /*showArray(begging);
+        /*showArray(beginning);
         System.out.println(" ");
         showArray(result_);
         System.out.println(" ");*/
 
-        assertTrue(Arrays.deepEquals(begging, result_));
+        assertTrue(Arrays.deepEquals(beginning, result_));
 
 
     }
 
     @Test
     public void fillingWallTestWithMonsterV2(){
-        Wall.TYPE [][] begging = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        wall.setWalls_array(begging);
-        /*showArray(begging);
+        wall.setWalls_array(beginning);
+        /*showArray(beginning);
         System.out.println(" ");*/
 
         List<Monster> monsters = new ArrayList<>();
@@ -152,4 +150,54 @@ public class WallTest {
         assertTrue(Arrays.deepEquals(expected, result_));
 
     }
+
+    @Test
+    public void percentageFill() {
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
+
+        wall.setWalls_array(beginning);
+
+        assertEquals(0.0,wall.percentage_fill());
+    }
+
+    @Test
+    public void percentageFill2() {
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
+
+        wall.setWalls_array(beginning);
+        wall.fillWall(new ArrayList<>());
+
+        assertEquals(100.0, wall.percentage_fill());
+
+    }
+
+    @Test
+    public void percentageFill3() {
+        Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
+                {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
+
+        wall.setWalls_array(beginning);
+
+        List<Monster> monsters = new ArrayList<>();
+        Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
+        monsters.add(monster);
+
+        wall.fillWall(monsters);
+
+        assertEquals(75.0, wall.percentage_fill());
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class Wall extends Item {
     public TYPE[][] getWalls_array() {
         return walls_array;
     }
+
 
     public void setWalls_array(TYPE[][] walls_array) {
         this.walls_array = walls_array;
@@ -119,7 +121,6 @@ public class Wall extends Item {
         }
 
         eraseConstructionWall(TYPE.Construction);
-
     }
 
     private void finishConstruction(List<Monster> monsters, TYPE side)
@@ -171,7 +172,6 @@ public class Wall extends Item {
     }
 
     private int apply(int x, int y, TYPE side) {
-
         int n = 0;
 
         if (walls_array[x][y] == TYPE.Sea) {
@@ -188,12 +188,12 @@ public class Wall extends Item {
 
     public double percentage_fill()
     {
-        int total_area = (width-1)*(height-1);
+        int total_area = (width-2)*(height-2);
+
         int n_wall=0;
 
-        for (int i = 1; i < width - 1; i++) {
-            for (int j = 1; j < height; j++) {
-
+        for (int i = 1; i < width-1; i++) {
+            for (int j = 1; j < height-1; j++) {
                 if (walls_array[i][j] == TYPE.Wall) {
                     n_wall++;
                 }
