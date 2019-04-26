@@ -24,6 +24,7 @@ public class Monster extends Element {
 
     @Override
     Position move() {
+
         return new Position(position.getX() + speed_x, position.getY() + speed_y);
     }
 

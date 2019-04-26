@@ -1,3 +1,6 @@
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import java.util.ArrayList;
@@ -11,27 +14,31 @@ public class Arena {
     Player player;
     Wall wall;
     List<Monster> monsters = new ArrayList<>();
+    Score score;
+    Lives lives;
 
-    boolean gameOver = false;
     boolean finishLevel = false;
 
     private void init(int width, int height) {
         this.width = width;
-        this.height = height;
+        this.height = height - 1;
         createMonsters(2);
         this.background = new BackGround(width, height, " ","#3f3832");
+        this.score = new Score("%/80%", "#000000", width);
     }
 
     public Arena(int width, int height, Player p, Wall w) {
         init(width,height);
         this.player = p;
         this.wall = w;
+        this.lives = new Lives("Lives: ", "#000000", 4);
     }
 
-    public Arena(int width, int height) {
+    public Arena(int width, int height, int lives) {
         init(width,height);
         player = new Player(new Position(0,0), "C", "#FFFF33");
-        wall = new Wall(width, height, " ", "#000080");
+        wall = new Wall(this.width, this.height, " ", "#000080");
+        this.lives = new Lives("Lives: ", "#000000", lives);
     }
 
     private void createMonsters(int no_monsters) {
@@ -43,13 +50,14 @@ public class Arena {
         // create instance of Random class
         Random rand = new Random();
 
-        int x = rand.nextInt(width-3) + 1;
-        int y = rand.nextInt(height-3) + 1;
+        int x = rand.nextInt(width-3) + 2;
+        int y = rand.nextInt(height-3) + 2;
 
         return new Position(x, y);
     }
 
     public void draw(TextGraphics graphics) {
+
         background.draw(graphics);
 
         this.move();
@@ -60,6 +68,12 @@ public class Arena {
         for (Monster monster: monsters) {
             monster.draw(graphics);
         }
+
+        this.score.draw(graphics);
+
+        this.lives.draw(graphics);
+
+
     }
 
     public void move()
@@ -72,12 +86,27 @@ public class Arena {
             if(wall.getWall(pos.getX(), pos.getY()) == Wall.TYPE.Sea)
                 monsterMove(monster);
             else if (checkCollision(pos))
-                gameOver = true;
+                resetGame();
         }
+
+        this.score.setScore(wall.percentage_fill());
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
 
+
+    }
+
+    private void resetGame()
+    {
+        if(lives.getLives() == 0)
+            return;
+
+
+        this.lives.setLives();
+        player.setPosition(new Position(0, 0));
+
+        wall.eraseConstructionSea(Wall.TYPE.Construction);
 
     }
 
@@ -92,13 +121,13 @@ public class Arena {
         return true;
     }
 
-    private void playerMove(Position position) {
+    private boolean playerMove(Position position) {
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
-            return;
+            return true;
 
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
-            gameOver = true;
-            return;
+            resetGame();
+            return false;
 
         }
 
@@ -109,6 +138,8 @@ public class Arena {
         
         if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
             wall.fillWall(monsters);
+
+        return true;
     }
 
     //The monsters walk in diagonals and change direction every time he hits a wall
@@ -166,7 +197,7 @@ public class Arena {
     }
 
     public boolean isGameOver() {
-        return gameOver;
+        return lives.getLives() == 0;
     }
 
     public boolean isFinishLevel() {

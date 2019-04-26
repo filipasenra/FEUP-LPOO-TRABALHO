@@ -26,7 +26,7 @@ public class Game {
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
 
-            arena = new Arena(width, height);
+            arena = new Arena(width, height, 5);
         }
         catch (IOException e) {
             e.printStackTrace();

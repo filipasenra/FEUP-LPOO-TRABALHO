@@ -28,7 +28,7 @@ public abstract class Element extends Item {
 
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY()), this.symbol);
+        graphics.putString(new TerminalPosition(position.getX(), position.getY() + 1), this.symbol);
 
     }
 

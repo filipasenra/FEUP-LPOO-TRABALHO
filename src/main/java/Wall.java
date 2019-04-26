@@ -1,7 +1,6 @@
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.List;
 
@@ -21,9 +20,9 @@ public class Wall extends Item {
 
         walls_array = new TYPE[width][height];
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (i == 0 || j == height - 1 || j == 0 || i == width - 1) {
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                if (i == 0 || j == this.height - 1 || j == 0 || i == this.width - 1) {
                     walls_array[i][j] = TYPE.Wall;
                     continue;
                 }
@@ -50,7 +49,7 @@ public class Wall extends Item {
                 if (walls_array[i][j] == TYPE.Wall || walls_array[i][j] == TYPE.Construction) {
 
                     graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
-                    graphics.putString(new TerminalPosition(i, j), " ");
+                    graphics.putString(new TerminalPosition(i, j + 1), " ");
                 }
             }
         }
@@ -160,7 +159,7 @@ public class Wall extends Item {
         }
     }
 
-    private void eraseConstructionSea(TYPE side) {
+    public void eraseConstructionSea(TYPE side) {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if (walls_array[i][j] == side)
