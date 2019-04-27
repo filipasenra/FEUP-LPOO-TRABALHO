@@ -8,6 +8,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.StrictMath.abs;
+
 public class Game {
     private Screen screen;
     private Arena arena;
@@ -16,6 +18,9 @@ public class Game {
     private Menu menu;
     private int lives;
     private int no_monsters;
+
+    //Tolerance for how much time (in milliseconds) it has passed since the key was pressed
+    private static int TIME_FOR_KEY = 200;
 
     public Game() {
         try {
@@ -114,8 +119,22 @@ public class Game {
         screen.refresh();
     }
 
-    private void processKey(KeyStroke key) {
+    private void processKey(KeyStroke key) throws IOException {
+
+        //Tolerance for how much time (in milliseconds) it has passed since the key was pressed
+        if(abs(key.getEventTime() - System.currentTimeMillis()) > TIME_FOR_KEY )
+        {
+            KeyStroke key_new = screen.pollInput();
+
+            if(key_new == null)
+                return;
+
+            processKey(key_new);
+            return;
+        }
+
         arena.processKey(key);
+        return;
     }
 
 }
