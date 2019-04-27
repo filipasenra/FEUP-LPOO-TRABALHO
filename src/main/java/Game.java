@@ -13,7 +13,9 @@ public class Game {
     private Arena arena;
     private KeyStroke key;
     int FPS = 450; //Frames per seconds (controls the speed of the Player)
-
+    private Menu menu;
+    private int lives;
+    private int no_monsters;
 
     public Game() {
         try {
@@ -24,11 +26,15 @@ public class Game {
 
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessary
+            screen.doResizeIfNecessary();     // resize screen if necessar
 
-            arena = new Arena(width, height, 5);
-        }
-        catch (IOException e) {
+            lives = 5;
+            no_monsters = 4;
+
+            arena = new Arena(width, height, lives, no_monsters);
+
+            menu = new Menu(width, height);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,11 +48,11 @@ public class Game {
 
                 draw();
 
-                TimeUnit.MILLISECONDS.sleep((60* 1000)/FPS);
+                TimeUnit.MILLISECONDS.sleep((60 * 1000) / FPS);
 
                 key = screen.pollInput();
 
-                if(key == null)
+                if (key == null)
                     continue;
 
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
@@ -54,14 +60,16 @@ public class Game {
 
                 processKey(key);
 
-                if(key.getKeyType() == KeyType.EOF)
+                if (key.getKeyType() == KeyType.EOF)
                     break;
 
             } while (!arena.isGameOver() && !arena.isFinishLevel());
 
-            TimeUnit.SECONDS.sleep(2);
+            if(isToBeContinue())
+                run();
+            else
+                screen.close();
 
-            screen.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,6 +77,34 @@ public class Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isToBeContinue() throws IOException, InterruptedException {
+
+        if (arena.isFinishLevel()) {
+            menu.nextLevelmenu(screen.newTextGraphics());
+            screen.refresh();
+
+            if (lives > 2)
+                lives--;
+
+            if (no_monsters < 10)
+                no_monsters++;
+
+            arena = new Arena(70, 20, lives, no_monsters);
+
+            TimeUnit.SECONDS.sleep(2);
+
+            return true;
+
+        }
+
+        menu.gameOvermenu(screen.newTextGraphics());
+        screen.refresh();
+
+        TimeUnit.SECONDS.sleep(2);
+
+        return false;
     }
 
 

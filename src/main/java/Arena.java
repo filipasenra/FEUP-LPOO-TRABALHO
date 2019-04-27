@@ -19,23 +19,23 @@ public class Arena {
 
     boolean finishLevel = false;
 
-    private void init(int width, int height) {
+    private void init(int width, int height, int no_monsters) {
         this.width = width;
         this.height = height - 1;
-        createMonsters(2);
+        createMonsters(no_monsters);
         this.background = new BackGround(width, height, " ","#3f3832");
         this.score = new Score("%/80%", "#000000", width);
     }
 
     public Arena(int width, int height, Player p, Wall w) {
-        init(width,height);
+        init(width,height, 2);
         this.player = p;
         this.wall = w;
         this.lives = new Lives("Lives: ", "#000000", 4);
     }
 
-    public Arena(int width, int height, int lives) {
-        init(width,height);
+    public Arena(int width, int height, int lives, int no_monsters) {
+        init(width,height, no_monsters);
         player = new Player(new Position(0,0), "C", "#FFFF33");
         wall = new Wall(this.width, this.height, " ", "#000080");
         this.lives = new Lives("Lives: ", "#000000", lives);
@@ -154,7 +154,7 @@ public class Arena {
             return;
         }
 
-        monster.setPosition(position);
+        monster.setPosition(monster.move());
 
         //Check monsters' colisions with the walls
         if (wall.getWall(position.getX() + 1, position.getY()) == Wall.TYPE.Wall)
