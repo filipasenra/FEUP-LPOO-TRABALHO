@@ -81,19 +81,18 @@ public class Arena {
         playerMove(player.getPosition());
 
         for (Monster monster: monsters) {
-            Position pos = monster.move();
 
-            if(wall.getWall(pos.getX(), pos.getY()) == Wall.TYPE.Sea)
-                monsterMove(monster);
-            else if (checkCollision(pos))
+
+            if (checkCollision(monster.move()))
                 resetGame();
+
+                monsterMove(monster);
         }
 
         this.score.setScore(wall.percentage_fill());
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
-
 
     }
 
@@ -122,6 +121,7 @@ public class Arena {
     }
 
     private boolean playerMove(Position position) {
+
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
             return true;
 
@@ -143,24 +143,32 @@ public class Arena {
     }
 
     //The monsters walk in diagonals and change direction every time he hits a wall
-    private void monsterMove(Monster monster)
-    {
+    public void monsterMove(Monster monster) {
         Position position = monster.move();
+
+        if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall) {
+            monster.changeMov(Monster.TYPE_WALL.Sides);
+            monster.changeMov(Monster.TYPE_WALL.Tops);
+
+            monster.setPosition(monster.move());
+            return;
+        }
 
         monster.setPosition(position);
 
         //Check monsters' colisions with the walls
-        if (wall.getWall(position.getX()+1, position.getY()) == Wall.TYPE.Wall)
+        if (wall.getWall(position.getX() + 1, position.getY()) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Sides);
 
-        if (wall.getWall(position.getX()-1, position.getY()) == Wall.TYPE.Wall)
+        if (wall.getWall(position.getX() - 1, position.getY()) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Sides);
 
-        if (wall.getWall(position.getX(), position.getY()+1) == Wall.TYPE.Wall)
+        if (wall.getWall(position.getX(), position.getY() + 1) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Tops);
 
-        if (wall.getWall(position.getX(), position.getY()-1) == Wall.TYPE.Wall)
+        if (wall.getWall(position.getX(), position.getY() - 1) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Tops);
+
     }
 
     //Check if a monster touched a construction wall

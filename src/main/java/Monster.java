@@ -2,8 +2,8 @@ public class Monster extends Element {
 
     enum TYPE_WALL {Sides, Tops}
 
-    int speed_y = 1;
-    int speed_x = 1;
+    private int speed_y = 1;
+    private int speed_x = 1;
 
     public Monster(Position position, String symbol, String color) {
         super(position, symbol, color);
@@ -26,6 +26,15 @@ public class Monster extends Element {
     Position move() {
 
         return new Position(position.getX() + speed_x, position.getY() + speed_y);
+    }
+
+
+    public int getSpeed_y() {
+        return speed_y;
+    }
+
+    public int getSpeed_x() {
+        return speed_x;
     }
 
 
