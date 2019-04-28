@@ -3,12 +3,12 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Score extends Item {
+public class Percentage extends Item {
 
     int width;
-    int score;
+    double score;
 
-    public Score(String symbol, String color, int width) {
+    public Percentage(String symbol, String color, int width) {
         super(symbol, color);
         this.width = width;
     }
@@ -17,14 +17,11 @@ public class Score extends Item {
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(this.width/2 - 5, 0), this.symbol + this.score);
+        String percentage_to_be_shown = ((int) this.score + this.symbol);
+        graphics.putString(new TerminalPosition(this.width - percentage_to_be_shown.length(), 0), percentage_to_be_shown);
     }
 
-    public void setScore(int score) {
+    public void setPercentage(double score) {
         this.score = score;
-    }
-
-    public int getScore() {
-        return score;
     }
 }

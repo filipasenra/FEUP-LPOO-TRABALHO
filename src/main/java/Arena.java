@@ -1,6 +1,3 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ public class Arena {
     Player player;
     Wall wall;
     List<Monster> monsters = new ArrayList<>();
+    Percentage percentage;
     Score score;
     Lives lives;
 
@@ -22,9 +20,11 @@ public class Arena {
     private void init(int width, int height, int no_monsters) {
         this.width = width;
         this.height = height - 1;
-        createMonsters(no_monsters);
         this.background = new BackGround(width, height, " ","#3f3832");
-        this.score = new Score("%/80%", "#000000", width);
+        this.percentage = new Percentage("%/80%", "#000000", width);
+        this.score = new Score("Score: ", "#000000", width);
+
+        createMonsters(no_monsters);
     }
 
     public Arena(int width, int height, Player p, Wall w) {
@@ -39,6 +39,7 @@ public class Arena {
         player = new Player(new Position(0,0), "C", "#FFFF33");
         wall = new Wall(this.width, this.height, " ", "#000080");
         this.lives = new Lives("Lives: ", "#000000", lives);
+        this.score = new Score("Score: ", "#000000", width);
     }
 
     private void createMonsters(int no_monsters) {
@@ -69,9 +70,9 @@ public class Arena {
             monster.draw(graphics);
         }
 
-        this.score.draw(graphics);
-
         this.lives.draw(graphics);
+        this.score.draw(graphics);
+        this.percentage.draw(graphics);
     }
 
     public void move()
@@ -81,10 +82,12 @@ public class Arena {
         for (Monster monster: monsters) {
             if (checkCollision(monster.move()))
                 resetGame();
-                monsterMove(monster);
+
+            monsterMove(monster);
         }
 
-        this.score.setScore(wall.percentage_fill());
+        this.percentage.setPercentage(wall.percentage_fill());
+        this.score.setScore((int)wall.percentage_fill());
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
@@ -148,7 +151,7 @@ public class Arena {
 
         monster.setPosition(monster.move());
 
-        //Check monsters' colisions with the walls
+        //Check monsters' collisions with the walls
         if (wall.getWall(position.getX() + 1, position.getY()) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Sides);
 
