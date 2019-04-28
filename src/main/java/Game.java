@@ -90,12 +90,10 @@ public class Game {
             menu.nextLevelmenu(screen.newTextGraphics());
             screen.refresh();
 
-            arena.lives.setLives(lives++);
-
             if (no_monsters < 10)
                 no_monsters++;
 
-            arena = new Arena(70, 20, arena.lives.getLives(), no_monsters);
+            arena = new Arena(70, 20, arena.lives.getLives() +1, no_monsters);
 
             TimeUnit.SECONDS.sleep(2);
 
