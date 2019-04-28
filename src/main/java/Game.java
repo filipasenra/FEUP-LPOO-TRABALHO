@@ -27,18 +27,18 @@ public class Game {
             int width = 70;
             int height = 20;
             Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-            screen = new TerminalScreen(terminal);
+            this.screen = new TerminalScreen(terminal);
 
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessar
+            screen.doResizeIfNecessary();     // resize screen if necessary
 
-            lives = 5;
-            no_monsters = 4;
+            this.lives = 5;
+            this.no_monsters = 2;
 
-            arena = new Arena(width, height, lives, no_monsters);
+            this.arena = new Arena(width, height, lives, no_monsters);
+            this.menu = new Menu(width, height);
 
-            menu = new Menu(width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,15 +57,15 @@ public class Game {
 
                 key = screen.pollInput();
 
-                if (key == null)
+                if (this.key == null)
                     continue;
 
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
+                if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
                     break;
 
-                processKey(key);
+                processKey(this.key);
 
-                if (key.getKeyType() == KeyType.EOF)
+                if (this.key.getKeyType() == KeyType.EOF)
                     break;
 
             } while (!arena.isGameOver() && !arena.isFinishLevel());
@@ -90,13 +90,12 @@ public class Game {
             menu.nextLevelmenu(screen.newTextGraphics());
             screen.refresh();
 
-            if (lives > 2)
-                lives--;
+            arena.lives.setLives(lives++);
 
             if (no_monsters < 10)
                 no_monsters++;
 
-            arena = new Arena(70, 20, lives, no_monsters);
+            arena = new Arena(70, 20, arena.lives.getLives(), no_monsters);
 
             TimeUnit.SECONDS.sleep(2);
 

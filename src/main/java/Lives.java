@@ -14,15 +14,13 @@ public class Lives extends Item {
 
     @Override
     public void draw(TextGraphics graphics) {
-
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(0, 0), (this.symbol + this.lives));
-
     }
 
-    public void setLives() {
-        this.lives--;
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     public int getLives()

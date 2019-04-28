@@ -72,8 +72,6 @@ public class Arena {
         this.score.draw(graphics);
 
         this.lives.draw(graphics);
-
-
     }
 
     public void move()
@@ -81,11 +79,8 @@ public class Arena {
         playerMove(player.getPosition());
 
         for (Monster monster: monsters) {
-
-
             if (checkCollision(monster.move()))
                 resetGame();
-
                 monsterMove(monster);
         }
 
@@ -93,7 +88,6 @@ public class Arena {
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
-
     }
 
     private void resetGame()
@@ -101,12 +95,11 @@ public class Arena {
         if(lives.getLives() == 0)
             return;
 
+        lives.setLives(lives.getLives()-1);
 
-        this.lives.setLives();
         player.setPosition(new Position(0, 0));
 
         wall.eraseConstructionSea(Wall.TYPE.Construction);
-
     }
 
     private boolean canPlayerMove(Position position)
@@ -128,7 +121,6 @@ public class Arena {
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction) {
             resetGame();
             return false;
-
         }
 
         wall.addPath(position.getX(), position.getY());
@@ -168,12 +160,10 @@ public class Arena {
 
         if (wall.getWall(position.getX(), position.getY() - 1) == Wall.TYPE.Wall)
             monster.changeMov(Monster.TYPE_WALL.Tops);
-
     }
 
     //Check if a monster touched a construction wall
     public boolean checkCollision (Position position) {
-
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Construction || player.getPosition().equals(position)) {
             return true;
         }

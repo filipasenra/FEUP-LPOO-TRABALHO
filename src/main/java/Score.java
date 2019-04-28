@@ -15,12 +15,10 @@ public class Score extends Item {
 
     @Override
     public void draw(TextGraphics graphics) {
-
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
         String score_to_be_shown = ((int) this.score + this.symbol);
         graphics.putString(new TerminalPosition(this.width - score_to_be_shown.length(), 0), score_to_be_shown);
-
     }
 
     public void setScore(double score) {
