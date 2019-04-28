@@ -36,7 +36,7 @@ public class Game {
             this.lives = 5;
             this.no_monsters = 2;
 
-            this.arena = new Arena(width, height, lives, no_monsters);
+            this.arena = new Arena(width, height, lives, no_monsters, 0);
             this.menu = new Menu(width, height);
 
         } catch (IOException e) {
@@ -93,7 +93,7 @@ public class Game {
             if (no_monsters < 10)
                 no_monsters++;
 
-            arena = new Arena(70, 20, arena.lives.getLives() +1, no_monsters);
+            arena = new Arena(70, 20, arena.lives.getLives() +1, no_monsters, arena.score.getScore());
 
             TimeUnit.SECONDS.sleep(2);
 

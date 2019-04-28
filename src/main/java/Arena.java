@@ -34,12 +34,13 @@ public class Arena {
         this.lives = new Lives("Lives: ", "#000000", 4);
     }
 
-    public Arena(int width, int height, int lives, int no_monsters) {
+    public Arena(int width, int height, int lives, int no_monsters, int score) {
         init(width,height, no_monsters);
         player = new Player(new Position(0,0), "C", "#FFFF33");
         wall = new Wall(this.width, this.height, " ", "#000080");
         this.lives = new Lives("Lives: ", "#000000", lives);
         this.score = new Score("Score: ", "#000000", width);
+        this.score.setScore(score);
     }
 
     private void createMonsters(int no_monsters) {
@@ -87,7 +88,6 @@ public class Arena {
         }
 
         this.percentage.setPercentage(wall.percentage_fill());
-        this.score.setScore((int)wall.percentage_fill());
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
@@ -131,8 +131,11 @@ public class Arena {
         if (canPlayerMove(player.move()))
             player.setPosition(player.move());
         
-        if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall)
+        if (wall.getWall(player.getPosition().getX(), player.getPosition().getY()) == Wall.TYPE.Wall) {
             wall.fillWall(monsters);
+            score.setScore(score.getScore()+ (int)wall.percentage_fill());
+        }
+
 
         return true;
     }
