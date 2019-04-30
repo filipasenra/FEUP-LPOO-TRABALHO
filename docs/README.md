@@ -1,6 +1,7 @@
-# LPOO_TG Project Name
+# LPOO_36 PAC XON
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are. 
+ Our game is based on Pac Xon, that was inspired by Xenon and Pacman. The goal of the game is to cover 80% of the screen with walls. In the arena there are monsters, if they touch the player or a path in construction, the player looses a live.WHen he has no more lives to loose, it is game over.
+ Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
 ## Implemented Features
 
