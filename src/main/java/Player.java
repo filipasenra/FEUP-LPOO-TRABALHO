@@ -8,7 +8,7 @@ public class Player extends Element{
     }
 
     private DIRECTION direction = DIRECTION.EAST;
-    int speed = 1;
+    private int speed = 1;
 
     public Player(Position position, String symbol, String color) {
         super(position, symbol, color);

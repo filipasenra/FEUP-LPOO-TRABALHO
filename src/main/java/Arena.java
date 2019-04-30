@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Random;
 
 public class Arena {
-    int width;
-    int height;
-    BackGround background;
-    Player player;
-    Wall wall;
-    List<Monster> monsters = new ArrayList<>();
-    Percentage percentage;
-    Score score;
-    Lives lives;
+    private int width;
+    private int height;
+    private BackGround background;
+    private Player player;
+    private Wall wall;
+    private List<Monster> monsters = new ArrayList<>();
+    private Percentage percentage;
+    private Score score;
+    private Lives lives;
 
     boolean finishLevel = false;
 
@@ -204,5 +204,13 @@ public class Arena {
 
     public boolean isFinishLevel() {
         return finishLevel;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public Lives getLives() {
+        return lives;
     }
 }

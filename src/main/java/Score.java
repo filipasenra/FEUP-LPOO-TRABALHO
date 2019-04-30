@@ -5,8 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Score extends Item {
 
-    int width;
-    int score;
+    private int width;
+    private int score;
 
     public Score(String symbol, String color, int width) {
         super(symbol, color);

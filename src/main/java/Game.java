@@ -8,20 +8,18 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.StrictMath.abs;
-
 public class Game {
+    private static  Game currentInstance;
     private Screen screen;
     private Arena arena;
     private KeyStroke key;
-    private int FPS = 12; //Frames per seconds (controls the speed of the Player)
+    private int FPS = 10; //Frames per seconds (controls the speed of the Player)
     private Menu menu;
     private int lives;
     private int no_monsters;
     private int initTime;
 
-    public Game() {
-        try {
+    private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());
             int width = 70;
             int height = 20;
@@ -37,14 +35,16 @@ public class Game {
 
             this.arena = new Arena(width, height, lives, no_monsters, 0);
             this.menu = new Menu(width, height);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void run() {
-        try {
+    public static synchronized Game getInstance() throws IOException {
+        if (currentInstance == null)
+            currentInstance = new Game();
+
+        return currentInstance;
+    }
+
+    public void run() throws IOException, InterruptedException {
             do {
                 screen.setCursorPosition(null);   // we don't need a cursor
                 screen.startScreen();             // screens must be started
@@ -74,14 +74,6 @@ public class Game {
                 run();
             else
                 screen.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
@@ -93,7 +85,7 @@ public class Game {
             if (no_monsters < 10)
                 no_monsters++;
 
-            arena = new Arena(70, 20, arena.lives.getLives() +1, no_monsters, arena.score.getScore());
+            arena = new Arena(70, 20, arena.getLives().getLives() +1, no_monsters, arena.getScore().getScore());
 
             TimeUnit.SECONDS.sleep(2);
 
@@ -101,7 +93,7 @@ public class Game {
 
         }
 
-        menu.gameOvermenu(screen.newTextGraphics());
+        menu.gameOvermenu(screen.newTextGraphics(), arena.getScore().getScore());
         screen.refresh();
 
         TimeUnit.SECONDS.sleep(2);
@@ -116,20 +108,7 @@ public class Game {
         screen.refresh();
     }
 
-    private void processKey(KeyStroke key) throws IOException {
-
-        //Tolerance for how much time (in milliseconds) it has passed since the key was pressed
-        /*if(abs(key.getEventTime() - System.currentTimeMillis()) > TIME_FOR_KEY )
-        {
-            KeyStroke key_new = screen.pollInput();
-
-            if(key_new == null)
-                return;
-
-            processKey(key_new);
-            return;
-        }*/
-
+    private void processKey(KeyStroke key) {
         arena.processKey(key);
         return;
     }

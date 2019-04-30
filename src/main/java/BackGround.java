@@ -4,8 +4,8 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class BackGround extends Item{
-    public int width;
-    public int height;
+    private int width;
+    private int height;
 
     public BackGround(int width, int height, String symbol, String color) {
         super(symbol, color);

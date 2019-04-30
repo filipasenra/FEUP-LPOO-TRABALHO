@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Wall extends Item {
 
-    enum TYPE {Wall, Sea, Construction, Side1, Side2}
+    enum TYPE {Wall, Sea, Construction, Side1}
 
-    TYPE walls_array[][];
-    int width;
-    int height;
+    private TYPE walls_array[][];
+    private int width;
+    private int height;
 
     public Wall(int width, int height, String symbol, String color) {
         super(symbol, color);

@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Lives extends Item {
 
-    int lives;
+    private int lives;
 
     public Lives(String symbol, String color, int lives) {
         super(symbol, color);

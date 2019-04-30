@@ -5,8 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Percentage extends Item {
 
-    int width;
-    double score;
+    private int width;
+    private double score;
 
     public Percentage(String symbol, String color, int width) {
         super(symbol, color);
