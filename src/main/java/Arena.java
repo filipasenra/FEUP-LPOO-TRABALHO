@@ -62,8 +62,6 @@ public class Arena {
 
         background.draw(graphics);
 
-        this.move();
-
         wall.draw(graphics);
         player.draw(graphics);
 

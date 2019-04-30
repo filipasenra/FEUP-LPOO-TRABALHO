@@ -14,16 +14,15 @@ public class Game {
     private Screen screen;
     private Arena arena;
     private KeyStroke key;
-    int FPS = 450; //Frames per seconds (controls the speed of the Player)
+    private int FPS = 12; //Frames per seconds (controls the speed of the Player)
     private Menu menu;
     private int lives;
     private int no_monsters;
-
-    //Tolerance for how much time (in milliseconds) it has passed since the key was pressed
-    private static int TIME_FOR_KEY = 200;
+    private int initTime;
 
     public Game() {
         try {
+            initTime = (int) (System.currentTimeMillis());
             int width = 70;
             int height = 20;
             Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
@@ -51,9 +50,10 @@ public class Game {
                 screen.startScreen();             // screens must be started
                 screen.doResizeIfNecessary();     // resize screen if necessary
 
-                draw();
-
-                TimeUnit.MILLISECONDS.sleep((60 * 1000) / FPS);
+                if (((System.currentTimeMillis() - initTime) % (1000/FPS)) == 0){
+                    arena.move();
+                    draw();
+                }
 
                 key = screen.pollInput();
 
@@ -119,7 +119,7 @@ public class Game {
     private void processKey(KeyStroke key) throws IOException {
 
         //Tolerance for how much time (in milliseconds) it has passed since the key was pressed
-        if(abs(key.getEventTime() - System.currentTimeMillis()) > TIME_FOR_KEY )
+        /*if(abs(key.getEventTime() - System.currentTimeMillis()) > TIME_FOR_KEY )
         {
             KeyStroke key_new = screen.pollInput();
 
@@ -128,7 +128,7 @@ public class Game {
 
             processKey(key_new);
             return;
-        }
+        }*/
 
         arena.processKey(key);
         return;
