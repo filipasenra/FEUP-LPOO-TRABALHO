@@ -79,10 +79,11 @@ public class Arena {
         playerMove(player.getPosition());
 
         for (Monster monster: monsters) {
-            if (checkCollision(monster.move()))
-                resetGame();
 
             monsterMove(monster);
+
+            if (checkCollision(monster.getPosition()))
+                resetGame();
         }
 
         this.percentage.setPercentage(wall.percentage_fill());
