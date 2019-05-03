@@ -18,6 +18,7 @@ public class Game {
     private int lives;
     private int no_monsters;
     private int initTime;
+    private boolean started = false;
 
     private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());
@@ -45,29 +46,27 @@ public class Game {
     }
 
     public void run() throws IOException, InterruptedException {
-
         menu.startGamemenu(screen.newTextGraphics());
         screen.refresh();
-        boolean started = false;
 
-        do {
-            key = screen.pollInput();
+            do {
+                key = screen.pollInput();
 
-            if (this.key == null)
-                continue;
+                if (this.key == null)
+                    continue;
 
-            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
-                screen.close();
+                if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
+                    screen.close();
 
-            if (this.key.getKeyType() == KeyType.EOF)
-                screen.close();
+                if (this.key.getKeyType() == KeyType.EOF)
+                    screen.close();
 
-            if (this.key.getKeyType() == KeyType.Enter) {
-                started = true;
-                break;
-            }
+                if (this.key.getKeyType() == KeyType.Enter) {
+                    started = true;
+                    break;
+                }
 
-        } while (!started);
+            } while (!started);
 
         do {
                 screen.setCursorPosition(null);   // we don't need a cursor
