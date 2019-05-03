@@ -45,10 +45,35 @@ public class Game {
     }
 
     public void run() throws IOException, InterruptedException {
-            do {
+
+        menu.startGamemenu(screen.newTextGraphics());
+        screen.refresh();
+        boolean started = false;
+
+        do {
+            key = screen.pollInput();
+
+            if (this.key == null)
+                continue;
+
+            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
+                screen.close();
+
+            if (this.key.getKeyType() == KeyType.EOF)
+                screen.close();
+
+            if (this.key.getKeyType() == KeyType.Enter) {
+                started = true;
+                break;
+            }
+
+        } while (!started);
+
+        do {
                 screen.setCursorPosition(null);   // we don't need a cursor
                 screen.startScreen();             // screens must be started
                 screen.doResizeIfNecessary();     // resize screen if necessary
+
 
                 if (((System.currentTimeMillis() - initTime) % (1000/FPS)) == 0){
                     arena.move();
