@@ -71,10 +71,10 @@ We plan to add **5 new features**:
 2. The class com.pac_xon.Menu seems to be a so-called "Lazy Class". However, since we anticipated future changes to the graphic design (and we know that this may seem like a pitfall) such as adding images, suport to mouse and others, this class will be usefull in the future.
 
 ## Testing Results
-
-> This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
  
  ![TestResults](images/TestMutationResults.png)
+ We understand that these results are far from ideal and we plan to improve them.   
+ You can find the reports [here](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_36/tree/master/docs/pitest).
 
 ## Self-evaluation
 The work was carried out by both students but not divided specifically. We talked regularly and distributily small tasks accordingly.   
