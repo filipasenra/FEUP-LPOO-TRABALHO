@@ -8,7 +8,7 @@ application {
     mainClassName = 'Application'
 }
 
-group 'LPOO_36'
+group 'com.pac_xon'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

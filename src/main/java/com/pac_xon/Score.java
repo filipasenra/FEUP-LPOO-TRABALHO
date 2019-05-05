@@ -1,30 +1,32 @@
+package com.pac_xon;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Lives extends Item {
+public class Score extends Item {
 
-    private int lives;
+    private int width;
+    private int score;
 
-    public Lives(String symbol, String color, int lives) {
+    public Score(String symbol, String color, int width) {
         super(symbol, color);
-        this.lives = lives;
+        this.width = width;
     }
 
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(0, 0), (this.symbol + this.lives));
+        graphics.putString(new TerminalPosition(this.width/2 - 5, 0), this.symbol + this.score);
     }
 
-    public void setLives(int lives) {
-        this.lives = lives;
+    public void setScore(int score) {
+        this.score = score;
     }
 
-    public int getLives()
-    {
-        return this.lives;
+    public int getScore() {
+        return score;
     }
 }

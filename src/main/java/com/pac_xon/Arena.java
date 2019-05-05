@@ -1,3 +1,5 @@
+package com.pac_xon;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class Arena {
         this.height = height - 1;
         this.background = new BackGround(width, height, " ","#3f3832");
         this.percentage = new Percentage("%/80%", "#000000", width);
-        this.score = new Score("Score: ", "#000000", width);
+        this.score = new Score("com.pac_xon.Score: ", "#000000", width);
 
         createMonsters(no_monsters);
     }
@@ -31,15 +33,15 @@ public class Arena {
         init(width,height, 2);
         this.player = p;
         this.wall = w;
-        this.lives = new Lives("Lives: ", "#000000", 4);
+        this.lives = new Lives("com.pac_xon.Lives: ", "#000000", 4);
     }
 
     public Arena(int width, int height, int lives, int no_monsters, int score) {
         init(width,height, no_monsters);
         player = new Player(new Position(0,0), "C", "#FFFF33");
         wall = new Wall(this.width, this.height, " ", "#000080");
-        this.lives = new Lives("Lives: ", "#000000", lives);
-        this.score = new Score("Score: ", "#000000", width);
+        this.lives = new Lives("com.pac_xon.Lives: ", "#000000", lives);
+        this.score = new Score("com.pac_xon.Score: ", "#000000", width);
         this.score.setScore(score);
     }
 

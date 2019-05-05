@@ -1,4 +1,6 @@
-import org.junit.Before;
+package com.pac_xon;
+
+import com.pac_xon.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 import static junit.framework.TestCase.assertTrue;

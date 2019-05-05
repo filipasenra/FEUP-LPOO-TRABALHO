@@ -1,3 +1,5 @@
+package com.pac_xon;
+
 public class Monster extends Element {
 
     enum TYPE_WALL {Sides, Tops}

@@ -1,3 +1,6 @@
+package com.pac_xon;
+
+import com.pac_xon.*;
 import org.junit.Before;
 import org.junit.Test;
 

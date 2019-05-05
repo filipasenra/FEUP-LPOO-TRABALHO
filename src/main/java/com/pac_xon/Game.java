@@ -1,3 +1,5 @@
+package com.pac_xon;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -13,7 +15,7 @@ public class Game {
     private Screen screen;
     private Arena arena;
     private KeyStroke key;
-    private int FPS = 10; //Frames per seconds (controls the speed of the Player)
+    private int FPS = 10; //Frames per seconds (controls the speed of the com.pac_xon.Player)
     private Menu menu;
     private int lives;
     private int no_monsters;
@@ -44,7 +46,7 @@ public class Game {
         return currentInstance;
     }
 
-    private void startMenu() throws IOException {
+    public void startMenu() throws IOException {
 
         menu.startGamemenu(screen.newTextGraphics());
         screen.refresh();
@@ -64,8 +66,6 @@ public class Game {
     }
 
     public void run() throws IOException, InterruptedException {
-
-        startMenu();
 
         do {
             screen.setCursorPosition(null);   // we don't need a cursor

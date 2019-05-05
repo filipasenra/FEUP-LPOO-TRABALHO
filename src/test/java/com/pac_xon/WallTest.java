@@ -1,3 +1,8 @@
+package com.pac_xon;
+
+import com.pac_xon.Monster;
+import com.pac_xon.Position;
+import com.pac_xon.Wall;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;

@@ -1,3 +1,5 @@
+package com.pac_xon;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
@@ -5,7 +7,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Element extends Item {
 
-    //Position of object
+    //com.pac_xon.Position of object
     protected Position position;
 
     public Element(Position position, String symbol, String color) {

@@ -1,3 +1,5 @@
+package com.pac_xon;
+
 public class Player extends Element{
 
     enum DIRECTION {
