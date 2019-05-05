@@ -45,59 +45,59 @@ public class Game {
         return currentInstance;
     }
 
-    public void run() throws IOException, InterruptedException {
+    private void startMenu() throws IOException {
+
         menu.startGamemenu(screen.newTextGraphics());
         screen.refresh();
 
-            do {
-                key = screen.pollInput();
+        do {
+            key = screen.readInput();
 
-                if (this.key == null)
-                    continue;
+            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
+                screen.close();
 
-                if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
-                    screen.close();
+            if (this.key.getKeyType() == KeyType.Enter) {
+                break;
+            }
 
-                if (this.key.getKeyType() == KeyType.EOF)
-                    screen.close();
+        } while (key.getKeyType() != KeyType.EOF);
 
-                if (this.key.getKeyType() == KeyType.Enter) {
-                    started = true;
-                    break;
-                }
+    }
 
-            } while (!started);
+    public void run() throws IOException, InterruptedException {
+
+        startMenu();
 
         do {
-                screen.setCursorPosition(null);   // we don't need a cursor
-                screen.startScreen();             // screens must be started
-                screen.doResizeIfNecessary();     // resize screen if necessary
+            screen.setCursorPosition(null);   // we don't need a cursor
+            screen.startScreen();             // screens must be started
+            screen.doResizeIfNecessary();     // resize screen if necessary
 
 
-                if (((System.currentTimeMillis() - initTime) % (1000/FPS)) == 0){
-                    arena.move();
-                    draw();
-                }
+            if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
+                arena.move();
+                draw();
+            }
 
-                key = screen.pollInput();
+            key = screen.pollInput();
 
-                if (this.key == null)
-                    continue;
+            if (this.key == null)
+                continue;
 
-                if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
-                    break;
+            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
+                break;
 
-                processKey(this.key);
+            processKey(this.key);
 
-                if (this.key.getKeyType() == KeyType.EOF)
-                    break;
+            if (this.key.getKeyType() == KeyType.EOF)
+                break;
 
-            } while (!arena.isGameOver() && !arena.isFinishLevel());
+        } while (!arena.isGameOver() && !arena.isFinishLevel());
 
-            if(isToBeContinue())
-                run();
-            else
-                screen.close();
+        if (isToBeContinue())
+            run();
+        else
+            screen.close();
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
