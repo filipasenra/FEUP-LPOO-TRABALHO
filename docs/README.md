@@ -28,33 +28,33 @@
 
 ## Design
 
-# THERE ARE SEVERAL DIFFERENT ITENS THAT COMPOSE THE GAME WITH SOME SIMILARITIES
+### THERE ARE SEVERAL DIFFERENT ITENS THAT COMPOSE THE GAME WITH SOME SIMILARITIES
 
-# Problem in Context
+### Problem in Context
  In this game we have lots of objects that compose the game area, such has the walls, the player itself, the mosnters, the background and the objects related to the game score.
  
-# The Pattern
+### The Pattern
  We used the COMPOSITE pattern to structurate the code. With this pattern, the primitive objects can be composed into more complex ones wich allows us to add new types of components in a much easier way.
  
-# Implementation
+### Implementation
  We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.  
  
-# Consequences
+### Consequences
  With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
   
   
-# WE CAN ONLY HAVE ONE INSTANTION OF THE GAME CLASS
+### WE CAN ONLY HAVE ONE INSTANTION OF THE GAME CLASS
 
-# Problem in Context
+### Problem in Context
  Each time the user plays this game we can only have one instantion of the game.
  
-# The Pattern
+### The Pattern
  In order to ensure that there was only one instance of the com.pac_xon.Game class we used the SINGLETON pattern in our code. 
 
-# Implementation
+### Implementation
  We used this pattern only in the com.pac_xon.Game class, so that when in the com.pac_xon.Application class we started a new game, it would not be possible to start a new one during all its performance.  
 
-# Consequences
+### Consequences
  With this pattern, we ensure that during our game execution it will only have exactly one instance. 
 
 
