@@ -1,6 +1,8 @@
 ﻿# LPOO_36 PAC XON
 
- Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman. The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls. When a monster touches the path in construction or the player, a life is lost. Quando um fantasma cruza a linha antes que chegues à área azul segura, perdes uma vida. After each level the difficulty increases. When there are no more lives, the game ends.
+ Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman. The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls. 
+ When a monster touches the path in construction or the player, a life is lost. Quando um fantasma cruza a linha antes que chegues à área azul segura, perdes uma vida. After each level the difficulty increases.   
+ When there are no more lives, the game ends.
 
  Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
@@ -17,12 +19,12 @@
 ## Design
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
-COMPOSITE
+COMPOSITE    
   In this game we had several objects with some common aspects but that were different, so we used the COMPOSITE pattern to structurate the code.
   We used a class called Item that was extended by six other classes: Element, Wall, Background, Score, Percentage and Lives. The Element class is also extended by the classes Monster and Player, due to the same issue.
-  With this pattern, the primitive objects, that in our case are Item and then Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
+  With this pattern, the primitive objects, that in our case are Item and then Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.   
   
-SINGLETON
+SINGLETON   
  In order to ensure that there was only one instance of the Game class we used the SINGLETON pattern in our code.
  We used this pattern only in the Game class, so that when in the Application class we started a new game, it would not be possible to start a new one during all its performance.
  With this pattern, we ensure that during our game execution it will only have exactly one instance. 
