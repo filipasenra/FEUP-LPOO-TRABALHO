@@ -29,9 +29,9 @@
 ## Design
 
 ### COMPOSITE    
-  In this game we had several objects with some common aspects but that were different, so we used the COMPOSITE pattern to structurate the code.
-  We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.
-  With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
+ In this game we had several objects with some common aspects but that were different, so we used the COMPOSITE pattern to structurate the code.
+ We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.
+ With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
   
 ### SINGLETON   
  In order to ensure that there was only one instance of the com.pac_xon.Game class we used the SINGLETON pattern in our code.
