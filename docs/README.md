@@ -1,6 +1,7 @@
 ﻿# LPOO_36 PAC XON
 
- Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman. The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls.  
+ Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman.   
+ The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls.  
  When a monster touches the path in construction or the player, a life is lost. After each level the difficulty increases.  
  When there are no more lives, the game ends. 
 
@@ -8,8 +9,8 @@
 
 ## Implemented Features
 
- 1. Start game: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key.  
- 2. Play game: once the enter key is pressed the user enters the game play section, in this section the user is a player, reperensented by a 'C', that uses the arrow keys to move in the screen and fill the area with walls.
+ 1. Start game: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key.    
+ 2. Play game: once the enter key is pressed the user enters the game play section, in this section the user is a player, reperensented by a 'C', that uses all the arrow keys to move in the screen and fill the area with walls. If the player is outside the area filled with walls, the player moves continuously in the same direction according to the arrow keys that are pressed. If he is inside the blue area he moves only once per each key pressed.  
  3. Monsters: in the game area that is not yet covered with walls we have monsters moving.   
  4. Collisions: each time a monsters touches a wall or the player, we have a collision detection.  
  5. Lives: during the game execution, each time a colision occurs, the player looses a life. In the beginning of the game the player has 5 lives, everytime a level is passed he gains a live and when he reaches 0 lives he looses.
