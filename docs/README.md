@@ -1,8 +1,7 @@
 ﻿# LPOO_36 PAC XON
 
  Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman.   
- The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls.  
- When a monster touches the path in construction or the player, a life is lost. After each level the difficulty increases.  
+ The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls. When a monster touches the path in construction or the player, a life is lost. After each level the difficulty increases.  
  When there are no more lives, the game ends. 
 
  Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
@@ -29,15 +28,35 @@
 
 ## Design
 
-### COMPOSITE    
- In this game we had several objects with some common aspects but that were different, so we used the COMPOSITE pattern to structurate the code.  
+# THERE ARE SEVERAL DIFFERENT ITENS THAT COMPOSE THE GAME WITH SOME SIMILARITIES
+
+# Problem in Context
+ In this game we have lots of objects that compose the game area, such has the walls, the player itself, the mosnters, the background and the objects related to the game score.
+ 
+# The Pattern
+ We used the COMPOSITE pattern to structurate the code. With this pattern, the primitive objects can be composed into more complex ones wich allows us to add new types of components in a much easier way.
+ 
+# Implementation
  We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.  
+ 
+# Consequences
  With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
   
-### SINGLETON   
- In order to ensure that there was only one instance of the com.pac_xon.Game class we used the SINGLETON pattern in our code.  
+  
+# WE CAN ONLY HAVE ONE INSTANTION OF THE GAME CLASS
+
+# Problem in Context
+ Each time the user plays this game we can only have one instantion of the game.
+ 
+# The Pattern
+ In order to ensure that there was only one instance of the com.pac_xon.Game class we used the SINGLETON pattern in our code. 
+
+# Implementation
  We used this pattern only in the com.pac_xon.Game class, so that when in the com.pac_xon.Application class we started a new game, it would not be possible to start a new one during all its performance.  
+
+# Consequences
  With this pattern, we ensure that during our game execution it will only have exactly one instance. 
+
 
 ## Known Code Smells and Refactoring Suggestions
 
