@@ -29,14 +29,13 @@
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
 
 ## Design
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts: "Problem in Context", "The Pattern", "Implementation" and "Consequences".
 
-COMPOSITE    
+# COMPOSITE    
   In this game we had several objects with some common aspects but that were different, so we used the COMPOSITE pattern to structurate the code.
   We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.
   With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
   
-SINGLETON   
+# SINGLETON   
  In order to ensure that there was only one instance of the com.pac_xon.Game class we used the SINGLETON pattern in our code.
  We used this pattern only in the com.pac_xon.Game class, so that when in the com.pac_xon.Application class we started a new game, it would not be possible to start a new one during all its performance.
  With this pattern, we ensure that during our game execution it will only have exactly one instance. 
