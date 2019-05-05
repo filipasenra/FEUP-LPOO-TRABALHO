@@ -15,7 +15,7 @@
  5. **Lives**: during the game execution, each time a colision occurs, the player looses a life. In the beginning of the game the player has 5 lives, everytime a level is passed he gains a live and when he reaches 0 lives he looses.
  6. **Score**: during the game, the score increases through levels. The points of the score are gained each time the player covers some part of the game area. The points are given accordingly to the area that is left to cover: the number of points received increase with the decrease of the area left to cover.   
  7. **Percentage**: to pass a level, the player has to cover 80% of the total area.  
- 8. Level: everytime the player passes a level, the number of monsters increases. The game starts with only to monsters and goes up to 10.   
+ 8. **Level**: everytime the player passes a level, the number of monsters increases. The game starts with only to monsters and goes up to 10.   
  9. **Game over**: when the player has no more lives, he looses the game, getting the final score.   
  
  ![Begin](images/start.png)
@@ -73,6 +73,8 @@ We plan to add **5 new features**:
 ## Testing Results
 
 > This section should contain screenshots of the main results of both the test coverage and mutation testing reports. It should also contain links to those reports in HTML format (you can copy the reports to the docs folder).
+ 
+ ![TestResults](images/TestMutationResults.png)
 
 ## Self-evaluation
 The work was carried out by both students but not divided specifically. We talked regularly and distributily small tasks accordingly.   
