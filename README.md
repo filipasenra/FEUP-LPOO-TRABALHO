@@ -8,12 +8,23 @@ Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
 ## Screenshots
 
- ![Begin](docs/images/start.png)
- ![gameBegin](docs/images/gameBegin.png)
+ Start of the Game.   
+ ![Begin](docs/images/start.png)  
+ 
+ How the Game Begins.  
+ ![gameBegin](docs/images/gameBegin.png)  
+
+ Path of Construction made by the player.  
  ![Path](docs/images/path.png)
- ![Game](docs/images/finishedPath.png) 
- ![Level](docs/images/nextLevel.png)
- ![GAMEOVER](docs/images/gameOver.png)
+ 
+ Previous Path Filled.  
+ ![Game](docs/images/finishedPath.png)   
+
+ Next Level Menu.  
+ ![Level](docs/images/nextLevel.png)  
+ 
+ Game Over Menu.   
+ ![GAMEOVER](docs/images/gameOver.png)   
 
 ## Install Instructions
 
