@@ -18,7 +18,6 @@ public class Game {
     private int lives;
     private int no_monsters;
     private int initTime;
-    private boolean started = false;
 
     private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());

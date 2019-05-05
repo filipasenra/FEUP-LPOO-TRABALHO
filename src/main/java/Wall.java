@@ -75,7 +75,7 @@ public class Wall extends Item {
 
         //Runs line by line, checking for the construction line
         //When it founds the construction line, checks the upper, down and then left and right side
-        for (int i = 0; i < width; i++) {
+        for (int i = 1; i < width - 1; i++) {
             for (int j = 1; j < height - 1; j++) {
 
                 if (walls_array[i][j] == TYPE.Construction) {
@@ -93,14 +93,6 @@ public class Wall extends Item {
                             finishConstruction(monsters, TYPE.Side1);
                         }
                     }
-                }
-            }
-        }
-
-        for (int i = 1; i < width - 1; i++) {
-            for (int j = 0; j < height; j++) {
-
-                if (walls_array[i][j] == TYPE.Construction) {
 
                     if (walls_array[i - 1][j] == TYPE.Sea) {
                         {

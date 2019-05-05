@@ -34,7 +34,7 @@ public class ArenaTest {
 
     @Test
     public void checkMonsterMove() {
-        Position position = new Position(1, 1);
+        Position position = new Position(2, 2);
         Monster monster = new Monster(position, "X", "#ffffff");
 
         Wall wall = new Wall(5, 6, " ", "ffffff");
@@ -51,7 +51,7 @@ public class ArenaTest {
         arena.monsterMove(monster);
 
         assertEquals(-1, monster.getSpeed_x());
-        assertEquals(-1, monster.getSpeed_y());
+        assertEquals(1, monster.getSpeed_y());
     }
 
 }

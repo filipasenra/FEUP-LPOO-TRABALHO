@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class checkMonsterMove {
+public class CheckMonsterMoveTest {
     Arena arena;
     Wall wall;
 
