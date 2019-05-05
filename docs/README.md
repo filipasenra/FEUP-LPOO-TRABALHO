@@ -26,7 +26,7 @@
 
 We plan to add **5 new features**:
  1. Support of mouse in menus.
- 2. Adding Menu LeaderBoarde to the Main Menu.
+ 2. Adding LeaderBoard and How to play to the Main Menu.
  3. Support of a graphical interface.
  4. Adding new types of monsters.
  5. Adding treats that give special powers to the player (for a finite time).
