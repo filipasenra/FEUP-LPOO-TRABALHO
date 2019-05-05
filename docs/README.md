@@ -10,7 +10,15 @@
 
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
-![Begin](images/start.png)
+ 1. Start game: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key.  
+ 2. Play game: once the enter key is pressed the user enters the game play section, in this section the user is a player, reperensented by a 'C', that uses the arrow keys to move in the screen and fill the area with walls.
+ 3. Monsters: in the game area that is not yet covered with walls we have monsters moving.   
+ 4. Collisions: each time a monsters touches a wall or the player, we have a collision detection.  
+ 5. Lives: during the game execution, each time a colision occurs, the player looses a life. In the beginning of the game the player has 5 lives, everytime a level is passed he gains a live and when he reaches 0 lives he looses.
+ 6. Score: during the game, the score increases through levels. The points of the score are gained each time the player covers some part of the game area. The points are given accordingly to the area that is left to cover: the number of points received increase with the decrease of the area left to cover.   
+ 7. Percentage: to pass a level, the player has to cover 80% of the total area.  
+ 8. Level: everytime the player passes a level, the number of monsters increases. The game starts with only to monsters and goes up to 10.   
+ 9. Game over: when the player has no more lives, he looses the game, getting the final score.   
 
 ## Planned Features
 
