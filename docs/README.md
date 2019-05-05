@@ -1,14 +1,12 @@
 ﻿# LPOO_36 PAC XON
 
  Our game is based on Pac Xon, a game that was inspired by Xenon and Pacman. The goal of the game is to reduce the space in wich the little monsters are floating until 80% of the screen is filled with walls. 
- When a monster touches the path in construction or the player, a life is lost. Quando um fantasma cruza a linha antes que chegues à área azul segura, perdes uma vida. After each level the difficulty increases.   
+ When a monster touches the path in construction or the player, a life is lost. After each level the difficulty increases.   
  When there are no more lives, the game ends.
 
  Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
 ## Implemented Features
-
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
 
  1. Start game: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key.  
  2. Play game: once the enter key is pressed the user enters the game play section, in this section the user is a player, reperensented by a 'C', that uses the arrow keys to move in the screen and fill the area with walls.
