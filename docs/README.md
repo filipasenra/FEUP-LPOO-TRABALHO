@@ -19,6 +19,10 @@
  7. Percentage: to pass a level, the player has to cover 80% of the total area.  
  8. Level: everytime the player passes a level, the number of monsters increases. The game starts with only to monsters and goes up to 10.   
  9. Game over: when the player has no more lives, he looses the game, getting the final score.   
+ 
+ ![Begin](images/start.png)  
+ ![Game](images/finishedPath.png)  
+ ![GAMEOVER](images/gameOver.png)  
 
 ## Planned Features
 
