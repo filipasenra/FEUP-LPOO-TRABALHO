@@ -1,18 +1,14 @@
 package com.pac_xon;
 
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
+import javax.swing.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
     private static  Game currentInstance;
-    private Screen screen;
+    private JFrame frame;
     private Arena arena;
     private KeyStroke key;
     private int FPS = 10; //Frames per seconds (controls the speed of the com.pac_xon.Player)
@@ -23,14 +19,11 @@ public class Game {
 
     private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());
-            int width = 70;
-            int height = 20;
-            Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
-            this.screen = new TerminalScreen(terminal);
+            int width = 600;
+            int height = 600;
+            this.frame = new JFrame("PAC-XON");
+            this.frame.setSize(width, height);
 
-            screen.setCursorPosition(null);   // we don't need a cursor
-            screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessary
 
             this.lives = 5;
             this.no_monsters = 2;
@@ -48,10 +41,10 @@ public class Game {
 
     public void startMenu() throws IOException {
 
-        menu.startGamemenu(screen.newTextGraphics());
-        screen.refresh();
+        menu.startGamemenu(frame);
+       // screen.refresh();
 
-        do {
+        /*do {
             key = screen.readInput();
 
             if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
@@ -61,13 +54,13 @@ public class Game {
                 break;
             }
 
-        } while (key.getKeyType() != KeyType.EOF);
+        } while (key.getKeyType() != KeyType.EOF);*/
 
     }
 
     public void run() throws IOException, InterruptedException {
 
-        do {
+        /*do {
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
@@ -96,13 +89,13 @@ public class Game {
         if (isToBeContinue())
             run();
         else
-            screen.close();
+            screen.close();*/
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
 
-        if (arena.isFinishLevel()) {
-            menu.nextLevelmenu(screen.newTextGraphics());
+       /* if (arena.isFinishLevel()) {
+            //menu.nextLevelmenu(screen.newTextGraphics());
             screen.refresh();
 
             if (no_monsters < 10)
@@ -116,19 +109,26 @@ public class Game {
 
         }
 
-        menu.gameOvermenu(screen.newTextGraphics(), arena.getScore().getScore());
+        //menu.gameOvermenu(screen.newTextGraphics(), arena.getScore().getScore());
         screen.refresh();
 
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(2);*/
 
         return false;
     }
 
 
-    private void draw() throws IOException {
-        screen.clear();
+    public void draw() throws IOException {
+
+        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+       frame.getContentPane().add(menu);
+
+        frame.pack();
+        frame.setVisible(true);
+
+        /*screen.clear();
         arena.draw(screen.newTextGraphics());
-        screen.refresh();
+        screen.refresh();*/
     }
 
     private void processKey(KeyStroke key) {
