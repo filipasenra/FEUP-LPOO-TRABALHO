@@ -18,9 +18,9 @@ public class Menu {
     {
         graphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
         graphics.enableModifiers(SGR.BOLD);
-        String to_be_shown = "com.pac_xon.Game Over";
+        String to_be_shown = "Game Over";
         graphics.putString(new TerminalPosition(this.width/2 - to_be_shown.length()/2, height/2), to_be_shown);
-        String score_to_be_shown = "com.pac_xon.Score: " + score;
+        String score_to_be_shown = "Score: " + score;
         graphics.putString(new TerminalPosition(this.width/2 - score_to_be_shown.length()/2, height/2 +1), score_to_be_shown);
     }
 
