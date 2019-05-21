@@ -8,9 +8,11 @@ public class Application {
         try {
             Game game = Game.getInstance();
             game.startMenu();
-            //game.run();
-            game.draw();
-        } catch (IOException /*| InterruptedException */e) {
+            System.out.println("Passou");
+            game.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

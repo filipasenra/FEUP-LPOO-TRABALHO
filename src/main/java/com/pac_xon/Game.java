@@ -3,14 +3,17 @@ package com.pac_xon;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
     private static  Game currentInstance;
     private JFrame frame;
     private Arena arena;
-    private KeyStroke key;
     private int FPS = 10; //Frames per seconds (controls the speed of the com.pac_xon.Player)
     private Menu menu;
     private int lives;
@@ -39,57 +42,71 @@ public class Game {
         return currentInstance;
     }
 
-    public void startMenu() throws IOException {
+    public void startMenu() throws IOException, InterruptedException {
 
-        menu.startGamemenu(frame);
-       // screen.refresh();
+        frame.add(menu);
+        frame.setVisible(true);
 
-        /*do {
-            key = screen.readInput();
+        final CountDownLatch latch = new CountDownLatch(1);
 
-            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
-                screen.close();
+        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(final KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_Q)
+                {
+                    frame.setVisible(false);
+                    latch.countDown();
+                    return false;
+                }
 
-            if (this.key.getKeyType() == KeyType.Enter) {
-                break;
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    latch.countDown();
+                    return true;
+                }
+
+                return true;
             }
+        };
 
-        } while (key.getKeyType() != KeyType.EOF);*/
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+        latch.await();  // current thread waits here until countDown() is called
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);
+        frame.remove(menu);
+
 
     }
 
     public void run() throws IOException, InterruptedException {
 
-        /*do {
-            screen.setCursorPosition(null);   // we don't need a cursor
-            screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessary
+        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(final KeyEvent e) {
+                processKey(e);
 
+                if (e.getKeyCode() == KeyEvent.VK_Q)
+                {
+                    frame.setVisible(false);
+                }
+
+                return false;
+            }
+        };
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+
+        do {
 
             if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
                 arena.move();
                 draw();
             }
 
-            key = screen.pollInput();
-
-            if (this.key == null)
-                continue;
-
-            if (this.key.getKeyType() == KeyType.Character && this.key.getCharacter() == 'q')
-                break;
-
-            processKey(this.key);
-
-            if (this.key.getKeyType() == KeyType.EOF)
-                break;
-
-        } while (!arena.isGameOver() && !arena.isFinishLevel());
+        } while (!arena.isGameOver() && !arena.isFinishLevel() && frame.isShowing());
 
         if (isToBeContinue())
             run();
         else
-            screen.close();*/
+            frame.setVisible(false);
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
@@ -121,7 +138,7 @@ public class Game {
     public void draw() throws IOException {
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-       frame.getContentPane().add(menu);
+        arena.draw(frame);
 
         frame.pack();
         frame.setVisible(true);
@@ -131,7 +148,7 @@ public class Game {
         screen.refresh();*/
     }
 
-    private void processKey(KeyStroke key) {
+    private void processKey(KeyEvent key) {
         arena.processKey(key);
         return;
     }

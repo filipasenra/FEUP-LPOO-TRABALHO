@@ -1,5 +1,7 @@
 package com.pac_xon;
 
+import java.awt.*;
+
 public class Player extends Element{
 
     enum DIRECTION {
@@ -47,5 +49,11 @@ public class Player extends Element{
 
         return position;
 
+    }
+
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(10, 10);
     }
 }

@@ -1,9 +1,6 @@
 package com.pac_xon;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
+import java.awt.*;
 
 public class BackGround extends Item{
     private int width;
@@ -15,16 +12,24 @@ public class BackGround extends Item{
         this.height = height;
     }
 
-    public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString(this.color));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), this.symbol.charAt(0));
-    }
-
     public int getWidth() {
         return width;
     }
 
     public int getHeight() {
         return height;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(width, height);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.setColor(Color.gray);
+        g.fillRect(0, 0, width, height);
     }
 }

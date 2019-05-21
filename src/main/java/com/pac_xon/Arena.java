@@ -2,6 +2,9 @@ package com.pac_xon;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+
+import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -60,11 +63,15 @@ public class Arena {
         return new Position(x, y);
     }
 
-    public void draw(TextGraphics graphics) {
+    public void draw(JFrame frame) {
 
-        background.draw(graphics);
+        JLayeredPane lpanel = new JLayeredPane();
+        frame.add(lpanel);
+        lpanel.setBounds(0, 0, width, height);
+        lpanel.add(background);
+        lpanel.add(wall);
 
-        wall.draw(graphics);
+        /*wall.draw(graphics);
         player.draw(graphics);
 
         for (Monster monster: monsters) {
@@ -73,7 +80,7 @@ public class Arena {
 
         this.lives.draw(graphics);
         this.score.draw(graphics);
-        this.percentage.draw(graphics);
+        this.percentage.draw(graphics);*/
     }
 
     public void move()
@@ -178,18 +185,18 @@ public class Arena {
         return false;
     }
 
-    public void processKey(KeyStroke key) {
-        switch (key.getKeyType()) {
-            case ArrowDown:
+    public void processKey(KeyEvent key) {
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_DOWN:
                 this.player.setDirection(Player.DIRECTION.SOUTH);
                 break;
-            case ArrowLeft:
+            case KeyEvent.VK_LEFT:
                 this.player.setDirection(Player.DIRECTION.WEST);
                 break;
-            case ArrowRight:
+            case KeyEvent.VK_RIGHT:
                 this.player.setDirection(Player.DIRECTION.EAST);
                 break;
-            case ArrowUp:
+            case KeyEvent.VK_UP:
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
         }
