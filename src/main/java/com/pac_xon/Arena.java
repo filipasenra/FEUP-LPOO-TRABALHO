@@ -2,6 +2,8 @@ package com.pac_xon;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -192,6 +194,36 @@ public class Arena {
             case ArrowUp:
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
+
+            default:
+                return;
+        }
+
+        if(wall.getWall(player.position.getX(), player.position.getY()) == Wall.TYPE.Wall)
+        {
+            if(canPlayerMove(player.move()))
+                player.setPosition(player.move());
+        }
+    }
+
+    public void processKeySwing(KeyEvent key) {
+
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_DOWN:
+                this.player.setDirection(Player.DIRECTION.SOUTH);
+                break;
+            case KeyEvent.VK_LEFT:
+                this.player.setDirection(Player.DIRECTION.WEST);
+                break;
+            case KeyEvent.VK_RIGHT:
+                this.player.setDirection(Player.DIRECTION.EAST);
+                break;
+            case KeyEvent.VK_UP:
+                this.player.setDirection(Player.DIRECTION.NORTH);
+                break;
+
+            default:
+                return;
         }
 
         if(wall.getWall(player.position.getX(), player.position.getY()) == Wall.TYPE.Wall)
