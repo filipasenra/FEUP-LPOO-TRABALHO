@@ -5,8 +5,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.awt.*;
-
 public class Percentage extends Item {
 
     private int width;
@@ -17,7 +15,7 @@ public class Percentage extends Item {
         this.width = width;
     }
 
-    //@Override
+    @Override
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
@@ -27,10 +25,5 @@ public class Percentage extends Item {
 
     public void setPercentage(double score) {
         this.score = score;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return null;
     }
 }

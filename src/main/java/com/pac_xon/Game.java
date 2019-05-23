@@ -1,38 +1,30 @@
 package com.pac_xon;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
     private static  Game currentInstance;
-    private JFrame frame;
-    private Arena arena;
-    private int FPS = 10; //Frames per seconds (controls the speed of the com.pac_xon.Player)
-    private Menu menu;
-    private int lives;
-    private int no_monsters;
+    private int FPS = 10; //Frames per seconds (controls the speed of the Player)
     private int initTime;
+
+    Model model;
+    View view;
 
     private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());
-            int width = 600;
-            int height = 600;
-            this.frame = new JFrame("PAC-XON");
-            this.frame.setSize(width, height);
+            int width = 70;
+            int height = 20;
 
-
-            this.lives = 5;
-            this.no_monsters = 2;
-
-            this.arena = new Arena(width, height, lives, no_monsters, 0);
-            this.menu = new Menu(width, height);
+            this.view = new View(width, height);
+            this.model = new Model(width, height);
     }
 
     public static synchronized Game getInstance() throws IOException {
@@ -42,83 +34,56 @@ public class Game {
         return currentInstance;
     }
 
-    public void startMenu() throws IOException, InterruptedException {
+    public void startMenu() throws IOException {
 
-        frame.add(menu);
-        frame.setVisible(true);
+        KeyStroke key;
 
-        final CountDownLatch latch = new CountDownLatch(1);
+        view.startMenu(model.getMenu());
 
-        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(final KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_Q)
-                {
-                    frame.setVisible(false);
-                    latch.countDown();
-                    return false;
-                }
 
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    latch.countDown();
-                    return true;
-                }
+        do {
+            key = view.readInput();
 
-                return true;
+            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
+                view.closeScreen();
+
+            if (key.getKeyType() == KeyType.Enter) {
+                break;
             }
-        };
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
-        latch.await();  // current thread waits here until countDown() is called
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);
-        frame.remove(menu);
-
+        } while (key.getKeyType() != KeyType.EOF);
 
     }
 
     public void run() throws IOException, InterruptedException {
 
-        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(final KeyEvent e) {
-                processKey(e);
+        model.installKeyHandler();
 
-                if (e.getKeyCode() == KeyEvent.VK_Q)
-                {
-                    frame.setVisible(false);
-                }
-
-                return false;
-            }
-        };
-
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+        KeyStroke key;
 
         do {
 
+
             if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
-                arena.move();
-                draw();
+                model.getArena().move();
+                view.draw(model.getArena());
             }
 
-        } while (!arena.isGameOver() && !arena.isFinishLevel() && frame.isShowing());
+        } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.Play);
 
         if (isToBeContinue())
             run();
         else
-            frame.setVisible(false);
+            view.closeScreen();
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
 
-       /* if (arena.isFinishLevel()) {
-            //menu.nextLevelmenu(screen.newTextGraphics());
-            screen.refresh();
+        if (model.getArena().isFinishLevel()) {
 
-            if (no_monsters < 10)
-                no_monsters++;
+            view.startNextLevelMenu(model.getMenu());
 
-            arena = new Arena(70, 20, arena.getLives().getLives() +1, no_monsters, arena.getScore().getScore());
+            model.newLevel();
 
             TimeUnit.SECONDS.sleep(2);
 
@@ -126,31 +91,11 @@ public class Game {
 
         }
 
-        //menu.gameOvermenu(screen.newTextGraphics(), arena.getScore().getScore());
-        screen.refresh();
+        view.gameOverMenu(model.getMenu(), model.getArena().getScore().getScore());
 
-        TimeUnit.SECONDS.sleep(2);*/
+        TimeUnit.SECONDS.sleep(2);
 
         return false;
-    }
-
-
-    public void draw() throws IOException {
-
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-        arena.draw(frame);
-
-        frame.pack();
-        frame.setVisible(true);
-
-        /*screen.clear();
-        arena.draw(screen.newTextGraphics());
-        screen.refresh();*/
-    }
-
-    private void processKey(KeyEvent key) {
-        arena.processKey(key);
-        return;
     }
 
 }

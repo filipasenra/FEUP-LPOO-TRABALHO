@@ -2,10 +2,7 @@ package com.pac_xon;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import javax.swing.*;
-import java.awt.*;
-
-public abstract class Item extends JComponent {
+public abstract class Item {
 
     //symbol to be represent Object
     protected String symbol;
@@ -18,6 +15,6 @@ public abstract class Item extends JComponent {
         this.color = color;
     }
 
-    @Override
-    abstract public Dimension getPreferredSize();
+    abstract public void draw(TextGraphics graphics);
+
 }

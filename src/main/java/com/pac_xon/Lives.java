@@ -5,8 +5,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.awt.*;
-
 public class Lives extends Item {
 
     private int lives;
@@ -16,16 +14,11 @@ public class Lives extends Item {
         this.lives = lives;
     }
 
-    //@Override
+    @Override
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(0, 0), (this.symbol + this.lives));
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(10, 10);
     }
 
     public void setLives(int lives) {

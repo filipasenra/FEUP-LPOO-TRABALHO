@@ -3,7 +3,6 @@ package com.pac_xon;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,15 +62,11 @@ public class Arena {
         return new Position(x, y);
     }
 
-    public void draw(JFrame frame) {
+    public void draw(TextGraphics graphics) {
 
-        JLayeredPane lpanel = new JLayeredPane();
-        frame.add(lpanel);
-        lpanel.setBounds(0, 0, width, height);
-        lpanel.add(background);
-        lpanel.add(wall);
+        background.draw(graphics);
 
-        /*wall.draw(graphics);
+        wall.draw(graphics);
         player.draw(graphics);
 
         for (Monster monster: monsters) {
@@ -80,7 +75,7 @@ public class Arena {
 
         this.lives.draw(graphics);
         this.score.draw(graphics);
-        this.percentage.draw(graphics);*/
+        this.percentage.draw(graphics);
     }
 
     public void move()
@@ -185,7 +180,34 @@ public class Arena {
         return false;
     }
 
-    public void processKey(KeyEvent key) {
+    public void processKey(KeyStroke key) {
+        switch (key.getKeyType()) {
+            case ArrowDown:
+                this.player.setDirection(Player.DIRECTION.SOUTH);
+                break;
+            case ArrowLeft:
+                this.player.setDirection(Player.DIRECTION.WEST);
+                break;
+            case ArrowRight:
+                this.player.setDirection(Player.DIRECTION.EAST);
+                break;
+            case ArrowUp:
+                this.player.setDirection(Player.DIRECTION.NORTH);
+                break;
+
+            default:
+                return;
+        }
+
+        if(wall.getWall(player.position.getX(), player.position.getY()) == Wall.TYPE.Wall)
+        {
+            if(canPlayerMove(player.move()))
+                player.setPosition(player.move());
+        }
+    }
+
+    public void processKeySwing(KeyEvent key) {
+
         switch (key.getKeyCode()) {
             case KeyEvent.VK_DOWN:
                 this.player.setDirection(Player.DIRECTION.SOUTH);
@@ -199,6 +221,9 @@ public class Arena {
             case KeyEvent.VK_UP:
                 this.player.setDirection(Player.DIRECTION.NORTH);
                 break;
+
+            default:
+                return;
         }
 
         if(wall.getWall(player.position.getX(), player.position.getY()) == Wall.TYPE.Wall)

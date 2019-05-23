@@ -1,7 +1,5 @@
 package com.pac_xon;
 
-import java.awt.*;
-
 public class Monster extends Element {
 
     enum TYPE_WALL {Sides, Tops}
@@ -39,12 +37,6 @@ public class Monster extends Element {
 
     public int getSpeed_x() {
         return speed_x;
-    }
-
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(10, 10);
     }
 
 
