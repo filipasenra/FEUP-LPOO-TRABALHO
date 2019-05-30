@@ -4,9 +4,25 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class Wall extends Item {
+
+    @Override
+    protected void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (walls_array[i][j] == TYPE.Wall || walls_array[i][j] == TYPE.Construction) {
+
+                    graphics.fillRect(i*50, j*100, 50, 100);
+                }
+            }
+        }
+    }
 
     enum TYPE {Wall, Sea, Construction, Side1}
 
@@ -15,6 +31,7 @@ public class Wall extends Item {
     private int height;
 
     public Wall(int width, int height, String symbol, String color) {
+
         super(symbol, color);
 
         this.width = width;
@@ -43,7 +60,7 @@ public class Wall extends Item {
         this.walls_array = walls_array;
     }
 
-    @Override
+    //@Override
     public void draw(TextGraphics graphics) {
 
         for (int i = 0; i < width; i++) {

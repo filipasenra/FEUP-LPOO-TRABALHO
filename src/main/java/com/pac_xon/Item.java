@@ -2,7 +2,9 @@ package com.pac_xon;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public abstract class Item {
+import javax.swing.*;
+
+public abstract class Item extends JComponent {
 
     //symbol to be represent Object
     protected String symbol;

@@ -57,9 +57,9 @@ public class Game {
 
     public void run() throws IOException, InterruptedException {
 
-        model.installKeyHandler();
+        view.preparingGame(model.getArena());
 
-        KeyStroke key;
+        model.installKeyHandler();
 
         do {
 
@@ -67,6 +67,7 @@ public class Game {
             if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
                 model.getArena().move();
                 view.draw(model.getArena());
+                view.getFrame().repaint();
             }
 
         } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.Play);

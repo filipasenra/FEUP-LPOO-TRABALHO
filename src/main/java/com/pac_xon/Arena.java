@@ -3,7 +3,12 @@ package com.pac_xon;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -248,4 +253,27 @@ public class Arena {
     public Lives getLives() {
         return lives;
     }
+
+    public void addComponents(Frame frame){
+
+        JLayeredPane layeredPane = new JLayeredPane();
+
+        for (Monster monster: monsters) {
+
+            monster.setSize(width*50, height*100);
+            layeredPane.add(monster, JLayeredPane.DEFAULT_LAYER);
+        }
+
+        player.setSize(width*50, height*100);
+        layeredPane.add(player, JLayeredPane.DEFAULT_LAYER);
+
+       wall.setSize(width*50, height*100);
+        layeredPane.add(wall, JLayeredPane.DEFAULT_LAYER);
+
+        frame.add(layeredPane);
+        frame.repaint();
+
+    }
+
+
 }
