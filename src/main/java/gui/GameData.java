@@ -2,80 +2,88 @@ package gui;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
-import com.pac_xon.Game;
-import com.pac_xon.Monster;
-import com.pac_xon.Player;
-import com.pac_xon.Wall;
+import com.pac_xon.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameData extends JPanel {
-    private Image background;
     private Image wall;
     private Image player;
     private Image monster;
 
-    private GameFrame gameFrame;
-    private Game game;
+    private Model model;
 
     private int charactersWidth;
     private int charactersHeight;
     private int level;
 
-    public GameData(GameFrame gameFrame) {
-        this.gameFrame = gameFrame;
+    public GameData(Model model, int width, int height) throws IOException {
+        this.model = model;
+
         setFocusable(true);
         setDoubleBuffered(true);
         loadImages();
+
+        this.charactersWidth = width/model.getArena().getWidth();
+        this.charactersHeight = height/(model.getArena().getHeight());
     }
 
     private void loadImages(){
-        ImageIcon temp; temp = new ImageIcon(this.getClass().getResource("images/background.png")); background = temp.getImage();
+        ImageIcon ii;
 
-        temp = new ImageIcon(this.getClass().getResource("images/wall.png")); wall = temp.getImage();
+        ii = new ImageIcon("images/wall.jpg");
+        wall = ii.getImage();
 
-        temp = new ImageIcon(this.getClass().getResource("images/player.png")); player = temp.getImage();
+        ii = new ImageIcon("images/player.png");
+        player = ii.getImage();
 
-        temp = new ImageIcon(this.getClass().getResource("images/monster.png")); monster = temp.getImage();
+        ii = new ImageIcon("images/green_ghost.png");
+        monster = ii.getImage();
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+
+        //g.drawImage(wall, 10, 10, this);
+
+        //g.drawString("hello", 10, 10);
+
         g.clearRect(0, 0, getWidth(), getHeight());
-        Graphics2D g2d = (Graphics2D) g;
 
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, getWidth(), getHeight());
-        drawGame(g2d);
+
+
+        drawGame(g);
      }
 
-    private void drawGame(Graphics2D g2d) {
-        drawPLayer(g2d);
-        drawMonsters(g2d);
-        drawWalls(g2d);
+    private void drawGame(Graphics g) {
+
+        drawWalls(g);
+        drawPLayer(g);
+        drawMonsters(g);
     }
 
-    private void drawCharacter(Image img, Graphics g2d, int i, int j){
-        int distX = j * charactersWidth; int distY = i * charactersHeight;
+    private void drawCharacter(Image img, Graphics g, int i, int j){
 
-        distX += (getWidth() - charactersWidth);
-        distY += (getHeight() - charactersHeight);
+        g.drawImage(img, i*this.charactersWidth, j*this.charactersHeight, charactersWidth, charactersHeight, this);
 
-        g2d.drawImage(img, distX, distY, distX + charactersWidth, distY + charactersHeight, 0, 0, img.getWidth(null), img.getHeight(null), null);}
+    }
 
-    private void drawPLayer(Graphics2D g2d) {
-        Player player2d = game.getModel().getArena().getPlayer();
+    private void drawPLayer(Graphics g2d) {
+        Player player2d = model.getArena().getPlayer();
 
         drawCharacter(player, g2d, player2d.getPosition().getX(), player2d.getPosition().getY());
 
     }
 
-    private void drawMonsters(Graphics2D g2d) {
-        List<Monster> monsters2d = game.getModel().getArena().getMonsters();
+    private void drawMonsters(Graphics g2d) {
+        List<Monster> monsters2d = model.getArena().getMonsters();
 
         if(monsters2d!=null){
 
@@ -86,7 +94,20 @@ public class GameData extends JPanel {
         }
     }
 
-    private void drawWalls(Graphics2D g2d) {
+    private void drawWalls(Graphics g2d) {
+
+        Wall.TYPE walls_array[][] = model.getArena().getWall().getWalls_array();
+
+        for (int i = 0; i < model.getArena().getWidth(); i++) {
+            for (int j = 0; j < model.getArena().getHeight(); j++) {
+
+                if (walls_array[i][j] == Wall.TYPE.Wall || walls_array[i][j] == Wall.TYPE.Construction) {
+
+                    drawCharacter(wall, g2d, i, j);
+                }
+            }
+        }
+
 
     }
 }

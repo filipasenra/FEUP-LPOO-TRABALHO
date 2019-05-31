@@ -258,4 +258,12 @@ public class Arena {
     public Wall getWall() {
         return wall;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

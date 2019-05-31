@@ -18,8 +18,9 @@ public class Game {
             int width = 70;
             int height = 20;
 
-            this.view = new View(width, height);
-            this.model = new Model(width, height);
+        this.model = new Model(width, height);
+            this.view = new View(width, height, model);
+
     }
 
     public static synchronized Game getInstance() throws IOException {
@@ -61,7 +62,7 @@ public class Game {
 
             if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
                 model.getArena().move();
-                view.draw(model.getArena());
+                view.draw();
             }
 
         } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.Play);

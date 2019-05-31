@@ -6,27 +6,36 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import gui.GameFrame;
 
 import java.io.IOException;
 
 public class View {
 
     private Screen screen;
+    private Model model;
+    private GameFrame gameFrame;
 
-    public View(int width, int height) throws IOException {
+    public View(int width, int height, Model model) throws IOException {
 
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         this.screen = new TerminalScreen(terminal);
+        this.model = model;
 
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
+
+        gameFrame = new GameFrame(model);
+        gameFrame.requestFocus();
     }
 
-    public void draw(Arena arena) throws IOException {
+    public void draw() throws IOException {
         screen.clear();
-        arena.draw(screen.newTextGraphics());
+        model.getArena().draw(screen.newTextGraphics());
         screen.refresh();
+
+        gameFrame.repaint();
     }
 
     public void closeScreen() throws IOException {

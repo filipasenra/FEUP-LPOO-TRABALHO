@@ -1,31 +1,33 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import com.pac_xon.Game;
+import com.pac_xon.Model;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
-    private final int xResolution = 800;
-    private final int yResolution = 600;
+    private final int xResolution = 1400;
+    private final int yResolution = 380;
 
     private GameData gameData;
-    private Game game;
 
-    public GameFrame() throws IOException {
+    public GameFrame(Model model) throws IOException {
         this.setTitle("Pac Xon");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        gameData = new GameData(this);
-        game = Game.getInstance();
-
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        this.setBounds((screenSize.width-xResolution)/2, (screenSize.height-yResolution)/2, xResolution, yResolution);
+        //Plus 76 for the frame on top i think?
+        this.setBounds(0, 0, xResolution, yResolution + 76);
+
+        this.gameData = new GameData(model, xResolution, yResolution);
 
         this.getContentPane().add(gameData);
 

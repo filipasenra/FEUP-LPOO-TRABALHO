@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Wall extends Item {
 
-    enum TYPE {Wall, Sea, Construction, Side1}
+    public enum TYPE {Wall, Sea, Construction, Side1}
 
     public TYPE walls_array[][];
     private int width;
