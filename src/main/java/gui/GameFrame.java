@@ -33,8 +33,10 @@ public class GameFrame extends JFrame {
         this.setBounds(0, 0, xResolution, yResolution + 76 + 20);
 
         this.gameData = new GameData(model, xResolution, yResolution);
+        this.gameData.setMaximumSize(new Dimension(xResolution, yResolution));
 
         this.scoreData = new ScoreData(model, xResolution, yResolution);
+        this.scoreData.setMaximumSize(new Dimension(xResolution, 20));
 
 
         this.getContentPane().add(scoreData);

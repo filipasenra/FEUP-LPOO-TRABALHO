@@ -14,11 +14,7 @@ public class ScoreData extends JPanel {
 
     private Model model;
 
-    JLabel score;
-    JLabel lives;
-
-    private int charactersWidth;
-    private int charactersHeight;
+    private int width;
 
     int a;
 
@@ -28,28 +24,17 @@ public class ScoreData extends JPanel {
         setFocusable(true);
         setDoubleBuffered(true);
 
-        this.charactersWidth = width/model.getArena().getWidth();
-        this.charactersHeight = height/(model.getArena().getHeight());
-
-        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-        score = new JLabel("Score: " + 0);
-        score.setFont(new Font("Courier New", Font.BOLD, 20));
-        this.add(score);
-
-
-        lives = new JLabel("Lives: " + 0);
-        lives.setFont(new Font("Courier New", Font.BOLD, 20));
-        this.add(lives);
-    }
-
-    public void updateScore(){
-
-        this.score.setText("Score: " + model.getArena().getScore().getScore());
-
-        this.lives.setText("Lives: " + model.getArena().getLives().getLives());
+        this.width = width;
     }
 
 
+    @Override
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+
+        graphics.setFont(new Font("Courier New", Font.BOLD, 20));
+        graphics.drawString("Score: " + model.getArena().getScore().getScore(), 0, 20);
+        graphics.drawString("Lives: " + model.getArena().getLives().getLives(), width-200, 20);
+    }
 }
 

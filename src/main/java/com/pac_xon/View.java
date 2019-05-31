@@ -35,7 +35,6 @@ public class View {
         model.getArena().draw(screen.newTextGraphics());
         screen.refresh();
 
-        gameFrame.scoreData.updateScore();
         gameFrame.repaint();
     }
 
