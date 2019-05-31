@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
-    private final int xResolution = 1400;
-    private final int yResolution = 380;
+    private final int xResolution = 1000;
+    private final int yResolution = 270;
 
     private GameData gameData;
     public ScoreData scoreData;
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
         this.gameData.setMaximumSize(new Dimension(xResolution, yResolution));
 
         this.scoreData = new ScoreData(model, xResolution, yResolution);
-        this.scoreData.setMaximumSize(new Dimension(xResolution, 20));
+        this.scoreData.setMaximumSize(new Dimension(xResolution, 22));
 
 
         this.getContentPane().add(scoreData);

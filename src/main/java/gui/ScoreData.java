@@ -33,8 +33,9 @@ public class ScoreData extends JPanel {
         super.paintComponent(graphics);
 
         graphics.setFont(new Font("Courier New", Font.BOLD, 20));
-        graphics.drawString("Score: " + model.getArena().getScore().getScore(), 0, 20);
-        graphics.drawString("Lives: " + model.getArena().getLives().getLives(), width-200, 20);
+        graphics.drawString((int) model.getArena().getPercentage().getPercentage() + "%/80%",width - 115, 20);
+        graphics.drawString("Score: " + model.getArena().getScore().getScore(), width/2 - 75, 20);
+        graphics.drawString("Lives: " + model.getArena().getLives().getLives(), 0, 20);
     }
 }
 

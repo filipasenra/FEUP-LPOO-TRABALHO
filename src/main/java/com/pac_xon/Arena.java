@@ -249,6 +249,10 @@ public class Arena {
         return lives;
     }
 
+    public Percentage getPercentage() {
+        return percentage;
+    }
+
     public Player getPlayer() {return player; }
 
     public List<Monster> getMonsters() {
