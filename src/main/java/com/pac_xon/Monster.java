@@ -1,18 +1,6 @@
 package com.pac_xon;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Monster extends Element {
-
-    private Image image;
-
-    @Override
-    protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-
-        graphics.drawImage(image, position.getX()*50, position.getY()*100, null);
-    }
 
     enum TYPE_WALL {Sides, Tops}
 
@@ -21,10 +9,6 @@ public class Monster extends Element {
 
     public Monster(Position position, String symbol, String color) {
         super(position, symbol, color);
-
-        ImageIcon ii = new ImageIcon("swing_images/green_ghost.png");
-        image = ii.getImage();
-        image = image.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
     }
 
     public void changeMov(TYPE_WALL type_wall)

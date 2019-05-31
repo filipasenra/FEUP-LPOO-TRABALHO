@@ -1,12 +1,7 @@
 package com.pac_xon;
 
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -57,9 +52,9 @@ public class Game {
 
     public void run() throws IOException, InterruptedException {
 
-        view.preparingGame(model.getArena());
-
         model.installKeyHandler();
+
+        KeyStroke key;
 
         do {
 
@@ -67,7 +62,6 @@ public class Game {
             if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
                 model.getArena().move();
                 view.draw(model.getArena());
-                view.getFrame().repaint();
             }
 
         } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.Play);
@@ -99,4 +93,7 @@ public class Game {
         return false;
     }
 
+    public Model getModel() {
+        return model;
+    }
 }

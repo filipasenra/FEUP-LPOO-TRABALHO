@@ -5,9 +5,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import javax.swing.*;
-import java.awt.*;
-
 public class Menu {
     private int width;
     private int height;
