@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
-    private final int xResolution = 1000;
-    private final int yResolution = 270;
+    private final int xResolution = 980;
+    private final int yResolution = 280;
 
     private GameData gameData;
     public ScoreData scoreData;

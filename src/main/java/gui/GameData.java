@@ -48,14 +48,9 @@ public class GameData extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-
-        //g.drawImage(wall, 10, 10, this);
-
-        //g.drawString("hello", 10, 10);
-
         g.clearRect(0, 0, getWidth(), getHeight());
 
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
 
 
