@@ -1,16 +1,10 @@
 package gui;
 
-import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 
-import com.pac_xon.Game;
 import com.pac_xon.Model;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
@@ -30,8 +24,6 @@ public class GameFrame extends JFrame {
         this.setTitle("Pac Xon");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         this.setBounds(0, 0, xResolution, yResolution);
 
@@ -82,12 +74,11 @@ public class GameFrame extends JFrame {
         gbc.insets = new Insets(40,0,0,0); //Space between the buttons
 
         //Start Button
-        this.gameOver = new JLabel("GameOver" + model.getArena().getScore().getScore());
+        this.gameOver = new JLabel("Game Over" + model.getArena().getScore().getScore());
         this.gameOver.setFont(new Font("Courier New", Font.BOLD, 12));
         this.gameOver.setForeground(Color.yellow);
         this.gameData.add(this.gameOver, gbc);
 
         this.setVisible(true);
     }
-
 }

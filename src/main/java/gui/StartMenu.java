@@ -1,21 +1,19 @@
 package gui;
 
-import com.pac_xon.Model;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class StartMenu extends JPanel {
 
     private Image background;
-    int width;
-    int height;
-
+    private int width;
+    private int height;
 
     private JButton startButton;
     private JButton exitButton;
-
 
     public StartMenu(int width, int height) throws IOException {
 
@@ -47,11 +45,27 @@ public class StartMenu extends JPanel {
         this.startButton.setFont(new Font("Courier New", Font.BOLD, 12));
         this.add(this.startButton, gbc);
 
+
+
         //Exit Button
         this.exitButton =   new JButton("Exit");
         this.exitButton.setFont(new Font("Courier New", Font.BOLD, 12));
         this.add(this.exitButton, gbc);
 
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
 
         loadImages();
 
@@ -65,7 +79,6 @@ public class StartMenu extends JPanel {
         background = ii.getImage();
 
     }
-
 
     @Override
     public void paintComponent(Graphics graphics) {

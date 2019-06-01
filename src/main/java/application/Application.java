@@ -1,4 +1,6 @@
-package com.pac_xon;
+package application;
+
+import com.pac_xon.Game;
 
 import java.io.IOException;
 
