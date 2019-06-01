@@ -41,7 +41,7 @@ public class Game {
 
         view.startMenu(model.getMenu());
 
-       /* KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent e) {
 
@@ -65,7 +65,7 @@ public class Game {
 
         } while (!this.startGame);
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);*/
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);
 
     }
 
