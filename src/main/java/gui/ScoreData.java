@@ -4,6 +4,7 @@ import com.pac_xon.*;
 
 import javax.swing.*;
 import java.awt.*;
+
 import java.io.IOException;
 
 public class ScoreData extends JPanel {
@@ -11,6 +12,7 @@ public class ScoreData extends JPanel {
     private Model model;
 
     private int width;
+    private int height;
 
     public ScoreData(Model model, int width, int height) throws IOException {
         this.model = model;
@@ -19,8 +21,8 @@ public class ScoreData extends JPanel {
         setDoubleBuffered(true);
 
         this.width = width;
+        this.height = height;
     }
-
 
     @Override
     public void paintComponent(Graphics graphics) {
