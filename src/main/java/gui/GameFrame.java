@@ -7,42 +7,69 @@ import com.pac_xon.Game;
 import com.pac_xon.Model;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
     private final int xResolution = 980;
-    private final int yResolution = 280;
+    private final int yResolution = 280 + 76 + 20;
 
     private GameData gameData;
-    public ScoreData scoreData;
+    private ScoreData scoreData;
 
-    public GameFrame(Model model) throws IOException {
+
+    private StartMenu startMenu;
+
+    private Model model;
+
+    public GameFrame(Model model){
         this.setTitle("Pac Xon");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        this.setBounds(0, 0, xResolution, yResolution);
+
+        this.model = model;
+
+    }
+    public void addingGame() throws IOException {
+
+        this.getContentPane().removeAll();
 
         this.setLayout(
                 new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS)
         );
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
         //Plus 76 for the frame on top i think? + 20 to Score data
-        this.setBounds(0, 0, xResolution, yResolution + 76 + 20);
-
-        this.gameData = new GameData(model, xResolution, yResolution);
-        this.gameData.setMaximumSize(new Dimension(xResolution, yResolution));
+        this.gameData = new GameData(model, xResolution, yResolution - 74 - 22);
+        this.gameData.setMaximumSize(new Dimension(xResolution, yResolution - 74 - 22));
 
         this.scoreData = new ScoreData(model, xResolution, yResolution);
         this.scoreData.setMaximumSize(new Dimension(xResolution, 22));
-
 
         this.getContentPane().add(scoreData);
         this.getContentPane().add(gameData);
 
         this.setVisible(true);
+
+    }
+
+    public void addingStartMenu() throws IOException {
+
+        this.getContentPane().removeAll();
+
+        //BackGround
+        this.startMenu = new StartMenu(xResolution, yResolution);
+        this.startMenu.setSize(xResolution, yResolution + 76 + 20);
+        this.add(startMenu);
+
+        this.setVisible(true);
+
     }
 
 }

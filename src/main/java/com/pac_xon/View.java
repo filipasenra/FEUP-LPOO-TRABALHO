@@ -30,6 +30,11 @@ public class View {
         gameFrame.requestFocus();
     }
 
+    public void newGame() throws IOException {
+
+        gameFrame.addingGame();
+    }
+
     public void draw() throws IOException {
         screen.clear();
         model.getArena().draw(screen.newTextGraphics());
@@ -54,6 +59,8 @@ public class View {
 
         menu.startGamemenu(screen.newTextGraphics());
         screen.refresh();
+
+        gameFrame.addingStartMenu();
     }
 
     public void startNextLevelMenu (Menu menu) throws IOException {

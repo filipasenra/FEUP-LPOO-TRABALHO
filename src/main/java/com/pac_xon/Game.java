@@ -54,6 +54,7 @@ public class Game {
     public void run() throws IOException, InterruptedException {
 
         model.installKeyHandler();
+        view.newGame();
 
         KeyStroke key;
 
