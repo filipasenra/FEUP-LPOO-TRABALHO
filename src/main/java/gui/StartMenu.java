@@ -61,20 +61,13 @@ public class StartMenu extends JPanel {
 
         this.scores.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-
                 String msg = "";
+                
                 for (int i : model.getArena().getScore().getHighScores()){
                     msg = msg + i + "\n";
                 }
 
-                Object[] options = {"OK"};
-                int n = JOptionPane.showOptionDialog(null,
-                        msg,"TOP 5 HIGH SCORES",
-                        JOptionPane.PLAIN_MESSAGE,
-                        JOptionPane.QUESTION_MESSAGE,
-                        null,
-                        options,
-                        options[0]);
+                JOptionPane.showConfirmDialog(null, msg, "TOP 5 HIGH SCORES", JOptionPane.DEFAULT_OPTION);
             } } );
 
         //Exit Button
@@ -84,7 +77,8 @@ public class StartMenu extends JPanel {
 
         this.exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) { String msg = "Are you sure you want to Exit?";
-                int res = JOptionPane.showConfirmDialog(null, msg); if (res == JOptionPane.YES_OPTION) System.exit(0); } } );
+                int res = JOptionPane.showConfirmDialog(null, msg, null, JOptionPane.YES_NO_OPTION);
+                if (res == JOptionPane.YES_OPTION) System.exit(0); } } );
 
         loadImages();
 
