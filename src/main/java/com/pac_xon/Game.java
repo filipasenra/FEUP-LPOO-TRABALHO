@@ -26,7 +26,8 @@ public class Game {
             int height = 20;
 
         this.model = new Model(width, height);
-            this.view = new View(width, height, model);
+        this.view = new View(width, height, model);
+        model.getArena().getScore().loadHighScores();
 
     }
 
@@ -89,6 +90,9 @@ public class Game {
         }
 
         view.gameOverMenu(model.getMenu(), model.getArena().getScore().getScore());
+        model.getArena().getScore().isHighScore(model.getArena().getScore());
+
+        System.out.println(model.getArena().getScore().getHighScores());
 
         TimeUnit.SECONDS.sleep(2);
 
