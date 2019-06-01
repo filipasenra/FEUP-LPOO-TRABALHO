@@ -71,7 +71,6 @@ public class Score extends Item {
         for (int i : highScores){
             count ++;
             if (i == min) {
-                System.out.println(count);
                 highScores.set(count, score.getScore());
                 return;
             }
