@@ -15,6 +15,7 @@ public class StartMenu extends JPanel {
     private int height;
 
     private JButton startButton;
+    private JButton scores;
     private JButton exitButton;
 
     Model model;
@@ -52,6 +53,29 @@ public class StartMenu extends JPanel {
 
         this.startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {  model.menu_OPTION = Model.MENU.GAME;} } );
+
+        //HighScores Button
+        this.scores = new JButton("High Scores");
+        this.scores.setFont(new Font("Courier New", Font.BOLD, 12));
+        this.add(this.scores, gbc);
+
+        this.scores.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+
+                String msg = "";
+                for (int i : model.getArena().getScore().getHighScores()){
+                    msg = msg + i + "\n";
+                }
+
+                Object[] options = {"OK"};
+                int n = JOptionPane.showOptionDialog(null,
+                        msg,"TOP 5 HIGH SCORES",
+                        JOptionPane.PLAIN_MESSAGE,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[0]);
+            } } );
 
         //Exit Button
         this.exitButton =   new JButton("Exit");
