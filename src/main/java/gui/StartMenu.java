@@ -1,5 +1,7 @@
 package gui;
 
+import com.pac_xon.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,13 +17,16 @@ public class StartMenu extends JPanel {
     private JButton startButton;
     private JButton exitButton;
 
-    public StartMenu(int width, int height) throws IOException {
+    Model model;
+
+    public StartMenu(Model model, int width, int height) throws IOException {
 
         setFocusable(true);
         setDoubleBuffered(true);
 
         this.width = width;
         this.height = height;
+        this.model = model;
 
         this.setLayout(new GridBagLayout());
 
@@ -45,27 +50,17 @@ public class StartMenu extends JPanel {
         this.startButton.setFont(new Font("Courier New", Font.BOLD, 12));
         this.add(this.startButton, gbc);
 
-
+        this.startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {  model.menu_OPTION = Model.MENU.GAME;} } );
 
         //Exit Button
         this.exitButton =   new JButton("Exit");
         this.exitButton.setFont(new Font("Courier New", Font.BOLD, 12));
         this.add(this.exitButton, gbc);
 
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
-
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
+        this.exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) { String msg = "Are you sure you want to Exit?";
+                int res = JOptionPane.showConfirmDialog(null, msg); if (res == JOptionPane.YES_OPTION) System.exit(0); } } );
 
         loadImages();
 

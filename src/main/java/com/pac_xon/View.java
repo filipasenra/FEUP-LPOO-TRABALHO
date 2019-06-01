@@ -8,6 +8,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import gui.GameFrame;
 
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class View {
 
     private Screen screen;
     private Model model;
-    private GameFrame gameFrame;
+    public GameFrame gameFrame;
 
     public View(int width, int height, Model model) throws IOException {
 

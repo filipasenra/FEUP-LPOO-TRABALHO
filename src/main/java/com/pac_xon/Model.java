@@ -13,7 +13,10 @@ public class Model {
     private int lives;
     private int no_monsters;
 
-    boolean Play = true;
+
+    public enum MENU {START_MENU, GAME, GAMEOVER};
+
+    public MENU menu_OPTION = MENU.START_MENU;
 
     public Model(int width, int height) {
 
@@ -44,20 +47,42 @@ public class Model {
         arena = new Arena(70, 20, arena.getLives().getLives() +1, no_monsters, arena.getScore().getScore());
     }
 
-    public void installKeyHandler(){
+    public void installKeyHandlerGame(){
 
         KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent e) {
 
                 if(e.getID() == KeyEvent.KEY_RELEASED )
-                    return false;
+                    return true;
 
 
                 arena.processKeySwing(e);
 
                 if(e.getKeyCode() == KeyEvent.VK_Q)
-                    Play = false;
+                    menu_OPTION = MENU.GAMEOVER;
+
+                return true;
+            }
+        };
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+    }
+
+    public void installKeyHandlerStartMenu(){
+
+        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(final KeyEvent e) {
+
+                if(e.getID() == KeyEvent.KEY_RELEASED )
+                    return true;
+
+
+                arena.processKeySwing(e);
+
+                if(e.getKeyCode() == KeyEvent.VK_Q)
+                    menu_OPTION = MENU.GAMEOVER;
 
                 return true;
             }

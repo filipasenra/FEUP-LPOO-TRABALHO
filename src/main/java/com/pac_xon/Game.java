@@ -41,38 +41,22 @@ public class Game {
 
         view.startMenu(model.getMenu());
 
-        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
-            @Override
-            public boolean dispatchKeyEvent(final KeyEvent e) {
-
-                if(e.getID() == KeyEvent.KEY_RELEASED )
-                    return false;
-
-                if(e.getKeyCode() == KeyEvent.VK_ENTER)
-                {
-                    startGame = true;
-                }
-
-                return false;
-            }
-        };
-
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+        model.installKeyHandlerStartMenu();
 
         do {
 
             sleep(10);
 
-        } while (!this.startGame);
-
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);
+        } while (model.menu_OPTION == Model.MENU.START_MENU);
 
     }
 
     public void run() throws IOException, InterruptedException {
 
-        model.installKeyHandler();
+        model.installKeyHandlerGame();
         view.newGame();
+
+        model.menu_OPTION = Model.MENU.GAME;
 
         do {
 
@@ -82,7 +66,7 @@ public class Game {
                 view.draw();
             }
 
-        } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.Play);
+        } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.menu_OPTION == Model.MENU.GAME);
 
         if (isToBeContinue())
             run();
