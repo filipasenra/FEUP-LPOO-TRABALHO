@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,16 +48,31 @@ public class Score extends Item {
         this.highScores = ints;
     }
 
+    public void saveHighScores() throws IOException {
+            BufferedWriter out = new BufferedWriter(new FileWriter(HighScoresFile));
+            for (int number : highScores) {
+                out.write(number + "\n");
+            }
+            out.flush();
+
+    }
+
     public List<Integer> getHighScores() {
         return highScores;
     }
 
     public void isHighScore(Score score) {
-        int i = -1;
-        for(Integer number: highScores) {
-            i++;
-            if (number < score.getScore()) {
-                highScores.set(i, score.getScore());
+        int min = highScores.get(0);
+        for (int i : highScores){
+            min = min < i ? min : i;
+        }
+
+        int count = -1;
+        for (int i : highScores){
+            count ++;
+            if (i == min) {
+                System.out.println(count);
+                highScores.set(count, score.getScore());
                 return;
             }
         }
