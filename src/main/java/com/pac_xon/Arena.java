@@ -119,7 +119,7 @@ public class Arena {
         return true;
     }
 
-    private boolean playerMove(Position position) {
+    public boolean playerMove(Position position) {
 
         if (wall.getWall(position.getX(), position.getY()) == Wall.TYPE.Wall)
             return true;

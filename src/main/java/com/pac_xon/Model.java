@@ -27,11 +27,6 @@ public class Model {
         this.menu = new Menu(width, height);
     }
 
-    public void processKey(KeyStroke key) {
-        arena.processKey(key);
-        return;
-    }
-
     public Arena getArena() {
         return arena;
     }
