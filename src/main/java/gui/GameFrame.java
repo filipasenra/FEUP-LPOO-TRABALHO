@@ -8,8 +8,8 @@ import com.pac_xon.Model;
 
 public class GameFrame extends JFrame {
 
-    private final int xResolution = 980;
-    private final int yResolution = 280 + 76 + 20;
+    private final int xResolution = 1260;
+    private final int yResolution = 400 + 76 + 20;
 
     private GameData gameData;
     private ScoreData scoreData;
