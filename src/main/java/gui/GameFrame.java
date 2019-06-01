@@ -20,8 +20,9 @@ public class GameFrame extends JFrame {
     private GameData gameData;
     private ScoreData scoreData;
 
-
     private StartMenu startMenu;
+
+    private JLabel gameOver;
 
     private Model model;
 
@@ -67,6 +68,26 @@ public class GameFrame extends JFrame {
         this.startMenu = new StartMenu(xResolution, yResolution);
         this.startMenu.setSize(xResolution, yResolution + 76 + 20);
         this.add(startMenu);
+
+        this.setVisible(true);
+
+    }
+
+    public void addingGameOverMenu() throws IOException {
+
+
+        this.gameData.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(40,0,0,0); //Space between the buttons
+
+        //Start Button
+        this.gameOver = new JLabel("GameOver" + model.getArena().getScore().getScore());
+        this.gameOver.setFont(new Font("Courier New", Font.BOLD, 12));
+        this.gameOver.setForeground(Color.yellow);
+        this.gameData.add(this.gameOver, gbc);
 
         this.setVisible(true);
 

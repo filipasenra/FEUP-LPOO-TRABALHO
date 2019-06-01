@@ -2,8 +2,13 @@ package com.pac_xon;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.sleep;
 
 public class Game {
     private static  Game currentInstance;
@@ -12,6 +17,8 @@ public class Game {
 
     Model model;
     View view;
+
+    boolean startGame = false;
 
     private Game() throws IOException {
             initTime = (int) (System.currentTimeMillis());
@@ -30,24 +37,35 @@ public class Game {
         return currentInstance;
     }
 
-    public void startMenu() throws IOException {
-
-        KeyStroke key;
+    public void startMenu() throws IOException, InterruptedException {
 
         view.startMenu(model.getMenu());
 
+        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(final KeyEvent e) {
+
+                if(e.getID() == KeyEvent.KEY_RELEASED )
+                    return false;
+
+                if(e.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    startGame = true;
+                }
+
+                return false;
+            }
+        };
+
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
 
         do {
-            key = view.readInput();
 
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q')
-                view.closeScreen();
+            sleep(10);
 
-            if (key.getKeyType() == KeyType.Enter) {
-                break;
-            }
+        } while (!this.startGame);
 
-        } while (key.getKeyType() != KeyType.EOF);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(keyEventDispatcher);
 
     }
 
@@ -55,8 +73,6 @@ public class Game {
 
         model.installKeyHandler();
         view.newGame();
-
-        KeyStroke key;
 
         do {
 

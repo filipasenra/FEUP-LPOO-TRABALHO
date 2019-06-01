@@ -8,6 +8,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import gui.GameFrame;
 
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class View {
@@ -45,6 +46,8 @@ public class View {
 
     public void closeScreen() throws IOException {
         screen.close();
+
+        gameFrame.dispatchEvent(new WindowEvent(gameFrame, WindowEvent.WINDOW_CLOSING));
     }
 
     public KeyStroke readInput() throws IOException {
@@ -67,11 +70,16 @@ public class View {
 
         menu.nextLevelmenu(screen.newTextGraphics());
         screen.refresh();
+
     }
 
     public void gameOverMenu(Menu menu, int score) throws IOException {
 
         menu.gameOvermenu(screen.newTextGraphics(), score);
         screen.refresh();
+
+
+        this.gameFrame.addingGameOverMenu();
+        this.gameFrame.repaint();
     }
 }
