@@ -74,8 +74,6 @@ public class GameFrame extends JFrame {
     }
 
     public void addingGameOverMenu() throws IOException {
-
-
         this.gameData.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -90,7 +88,6 @@ public class GameFrame extends JFrame {
         this.gameData.add(this.gameOver, gbc);
 
         this.setVisible(true);
-
     }
 
 }

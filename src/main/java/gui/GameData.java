@@ -14,15 +14,20 @@ public class GameData extends JPanel {
     private Image wall;
     private Image player;
     private Image monster;
+    private Image game_background;
 
     private Model model;
 
     private int charactersWidth;
     private int charactersHeight;
+    private int width;
+    private int height;
     private int level;
 
     public GameData(Model model, int width, int height) throws IOException {
         this.model = model;
+        this.width = width;
+        this.height = height;
 
         setFocusable(true);
         setDoubleBuffered(true);
@@ -43,16 +48,17 @@ public class GameData extends JPanel {
 
         ii = new ImageIcon("images/green_ghost.png");
         monster = ii.getImage();
+
+        ii = new ImageIcon("images/game_background.jpg");
+        game_background = ii.getImage();
     }
 
+    @Override
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
 
-        g.clearRect(0, 0, getWidth(), getHeight());
-
-        g.setColor(Color.black);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+        g.drawImage(game_background, 0, 0, this.width, this.height, this);
 
         drawGame(g);
      }

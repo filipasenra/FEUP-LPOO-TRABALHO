@@ -12,8 +12,6 @@ public class ScoreData extends JPanel {
 
     private int width;
 
-    int a;
-
     public ScoreData(Model model, int width, int height) throws IOException {
         this.model = model;
 
