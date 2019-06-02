@@ -95,6 +95,7 @@ public class Game {
         }
 
         view.gameOverMenu(model.getMenu(), model.getArena().getScore().getScore());
+        model.getArena().getScore().loadHighScores();
         model.getArena().getScore().isHighScore(model.getArena().getScore());
         model.getArena().getScore().saveHighScores();
 

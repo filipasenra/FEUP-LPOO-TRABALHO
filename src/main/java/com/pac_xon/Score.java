@@ -62,8 +62,8 @@ public class Score extends Item {
     }
 
     public void isHighScore(Score score) {
+         int min = highScores.get(0);
 
-            int min = highScores.get(0);
             for (int i : highScores) {
                 min = min < i ? min : i;
             }
