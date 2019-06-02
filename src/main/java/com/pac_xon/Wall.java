@@ -6,7 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.List;
 
-public class Wall extends Item {
+public class Wall {
 
     public enum TYPE {Wall, Sea, Construction, Side1}
 
@@ -14,8 +14,7 @@ public class Wall extends Item {
     private int width;
     private int height;
 
-    public Wall(int width, int height, String symbol, String color) {
-        super(symbol, color);
+    public Wall(int width, int height) {
 
         this.width = width;
         this.height = height;

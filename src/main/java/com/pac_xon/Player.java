@@ -12,8 +12,8 @@ public class Player extends Element{
     private DIRECTION direction = DIRECTION.EAST;
     private int speed = 1;
 
-    public Player(Position position, String symbol, String color) {
-        super(position, symbol, color);
+    public Player(Position position) {
+        super(position);
     }
 
     public void setDirection(DIRECTION direction)

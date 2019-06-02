@@ -28,7 +28,7 @@ public class Arena {
     private void init(int width, int height, int no_monsters) {
         this.width = width;
         this.height = height - 1;
-        this.score = new Score("Score: ", "#000000", width);
+        this.score = new Score();
 
         createMonsters(no_monsters);
     }
@@ -42,16 +42,16 @@ public class Arena {
 
     public Arena(int width, int height, int lives, int no_monsters, int score) {
         init(width,height, no_monsters);
-        player = new Player(new Position(0,0), "C", "#FFFF33");
-        wall = new Wall(this.width, this.height, " ", "#000080");
+        player = new Player(new Position(0,0));
+        wall = new Wall(this.width, this.height);
         this.lives = lives;
-        this.score = new Score("Score: ", "#000000", width);
+        this.score = new Score();
         this.score.setScore(score);
     }
 
     private void createMonsters(int no_monsters) {
         for (int i=0; i<no_monsters; i++)
-            monsters.add(new Monster(generatePositions(), "X", "#FFCCD5"));
+            monsters.add(new Monster(generatePositions()));
     }
 
     public Position generatePositions() {

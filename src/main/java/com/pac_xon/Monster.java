@@ -7,8 +7,8 @@ public class Monster extends Element {
     private int speed_y = 1;
     private int speed_x = 1;
 
-    public Monster(Position position, String symbol, String color) {
-        super(position, symbol, color);
+    public Monster(Position position) {
+        super(position);
     }
 
     public void changeMov(TYPE_WALL type_wall)

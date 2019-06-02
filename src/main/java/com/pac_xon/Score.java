@@ -15,16 +15,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Score extends Item {
+public class Score{
 
-    private int width;
     private int score;
     private String HighScoresFile = "HighScores.txt";
     private List<Integer> highScores;
 
-    public Score(String symbol, String color, int width) {
-        super(symbol, color);
-        this.width = width;
+    public Score() {
     }
 
     public void setScore(int score) {

@@ -5,14 +5,12 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public abstract class Element extends Item {
+public abstract class Element{
 
-    //com.pac_xon.Position of object
     protected Position position;
 
-    public Element(Position position, String symbol, String color) {
+    public Element(Position position) {
 
-        super(symbol, color);
         this.position = position;
     }
 
