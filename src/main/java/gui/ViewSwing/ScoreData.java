@@ -35,7 +35,7 @@ public class ScoreData extends JPanel {
         graphics.setFont(new Font("Courier New", Font.BOLD, 20));
         graphics.setColor(Color.yellow);
 
-        graphics.drawString((int) model.getArena().getPercentage().getPercentage() + "%/80%",width - 115, 20);
+        graphics.drawString((int) model.getArena().getPercentage() + "%/80%",width - 115, 20);
         graphics.drawString("Score: " + model.getArena().getScore().getScore(), width/2 - 75, 20);
         graphics.drawString("Lives: " + model.getArena().getLives(), 0, 20);
     }

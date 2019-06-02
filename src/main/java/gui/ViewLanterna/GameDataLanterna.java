@@ -51,7 +51,7 @@ public class GameDataLanterna {
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
         graphics.enableModifiers(SGR.BOLD);
-        String percentage_to_be_shown = ((int) this.model.getArena().getPercentage().getPercentage() + "%");
+        String percentage_to_be_shown = ((int) this.model.getArena().getPercentage() + "%");
         graphics.putString(new TerminalPosition(this.model.getArena().getWidth() - percentage_to_be_shown.length(), 0), percentage_to_be_shown);
     }
 

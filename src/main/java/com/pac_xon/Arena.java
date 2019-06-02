@@ -16,11 +16,10 @@ import java.util.stream.Collectors;
 public class Arena {
     private int width;
     private int height;
-    private BackGround background;
+
     private Player player;
     private Wall wall;
     private List<Monster> monsters = new ArrayList<>();
-    private Percentage percentage;
     private Score score;
     private int lives;
 
@@ -29,8 +28,6 @@ public class Arena {
     private void init(int width, int height, int no_monsters) {
         this.width = width;
         this.height = height - 1;
-        this.background = new BackGround(width, height, " ","#3f3832");
-        this.percentage = new Percentage("%/80%", "#000000", width);
         this.score = new Score("Score: ", "#000000", width);
 
         createMonsters(no_monsters);
@@ -78,8 +75,6 @@ public class Arena {
             if (checkCollision(monster.getPosition()))
                 resetGame();
         }
-
-        this.percentage.setPercentage(wall.percentage_fill());
 
         if(wall.percentage_fill() >= 80)
             finishLevel = true;
@@ -238,8 +233,8 @@ public class Arena {
         return lives;
     }
 
-    public Percentage getPercentage() {
-        return percentage;
+    public double getPercentage() {
+        return wall.percentage_fill();
     }
 
     public Player getPlayer() {return player; }

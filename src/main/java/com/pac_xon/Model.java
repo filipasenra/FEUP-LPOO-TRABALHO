@@ -12,6 +12,8 @@ public class Model {
     private int lives;
     private int no_monsters;
 
+    private KeyEventDispatcher keyEventDispatcherstartMenu;
+
 
     public enum MENU {START_MENU, GAME, GAMEOVER};
 
@@ -39,6 +41,8 @@ public class Model {
 
     public void installKeyHandlerGame(){
 
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(this.keyEventDispatcherstartMenu);
+
         KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent e) {
@@ -61,15 +65,12 @@ public class Model {
 
     public void installKeyHandlerStartMenu(){
 
-        KeyEventDispatcher keyEventDispatcher = new KeyEventDispatcher() {
+        this.keyEventDispatcherstartMenu = new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(final KeyEvent e) {
 
                 if(e.getID() == KeyEvent.KEY_RELEASED )
                     return true;
-
-
-                arena.processKeySwing(e);
 
                 if(e.getKeyCode() == KeyEvent.VK_ENTER)
                     menu_OPTION = MENU.GAME;
@@ -78,6 +79,6 @@ public class Model {
             }
         };
 
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcher);
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(keyEventDispatcherstartMenu);
     }
 }
