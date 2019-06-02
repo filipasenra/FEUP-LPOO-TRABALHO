@@ -26,6 +26,7 @@
 
 ## Design
 
+
 ### THERE ARE SEVERAL DIFFERENT ITENS THAT COMPOSE THE GAME WITH SOME SIMILARITIES
 
 ### Problem in Context
@@ -40,6 +41,7 @@
 ### Consequences
  With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
  
+  
   
 ### WE CAN ONLY HAVE ONE INSTANTION OF THE GAME CLASS
 
@@ -56,6 +58,7 @@
  With this pattern, we ensure that during our game execution it will only have exactly one instance.
  
  
+ 
  ### WE SHOULD RESPECT THE SINGLE RESPONSABILITY PRINCIPLE AND NOT HAVE LARGE CLASSES
  
  ### Problem in Context
@@ -70,6 +73,20 @@
   ### Consequences
  With this pattern, we ensure that our code is well organized.
 
+
+ ### WE NEED TO CONTROL THE INTERACTIONS BETWEEN THE USER AND THE GAME
+ 
+ ### Problem in Context
+  It is necessary to control the interactions that the user has with the program.
+ 
+  ### The Pattern
+ In order to ensure that the interactions were sucessfuly controlled, we used the **OBSERVER** pattern.
+ 
+ ### Implementation
+  We used this pattern in the model class to control the keys the player pressed during the game play.
+  
+  ### Consequences
+  With this pattern, we ensure that everytime the player presses a key, the model class is notified and handles it the right way. 
 
 
 
