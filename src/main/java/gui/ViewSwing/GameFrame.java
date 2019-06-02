@@ -14,7 +14,7 @@ public class GameFrame extends JFrame {
     private GameData gameData;
     private ScoreData scoreData;
 
-    public gui1.ViewSwing.StartMenu startMenu;
+    public StartMenu startMenu;
 
     private JLabel gameOver;
 
@@ -57,7 +57,7 @@ public class GameFrame extends JFrame {
         this.getContentPane().removeAll();
 
         //BackGround
-        this.startMenu = new gui1.ViewSwing.StartMenu(model, xResolution, yResolution);
+        this.startMenu = new StartMenu(model, xResolution, yResolution);
         this.startMenu.setSize(xResolution, yResolution + 76 + 20);
         this.add(startMenu);
 
