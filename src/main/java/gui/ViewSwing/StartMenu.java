@@ -63,8 +63,12 @@ public class StartMenu extends JPanel {
             public void actionPerformed(ActionEvent arg0) {
                 String msg = "";
 
-                for (int i : model.getArena().getScore().getHighScores()){
-                    msg = msg + i + "<br>";
+                if(model.getArena().getScore().getHighScores().size() == 0)
+                    msg = "No High Scores Saved!<br>";
+                else {
+                    for (int i : model.getArena().getScore().getHighScores()) {
+                        msg = msg + i + "<br>";
+                    }
                 }
 
                 JLabel message = new JLabel("<html><center>" + msg, JLabel.CENTER);
