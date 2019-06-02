@@ -22,13 +22,13 @@ public class ModelTest {
     @Test
     public void testNextLevel(){
 
-        int lives = model.getArena().getLives().getLives();
+        int lives = model.getArena().getLives();
         int monsters = model.getArena().getMonsters().size();
 
 
         model.newLevel();
 
-        assertEquals(lives +1 , model.getArena().getLives().getLives());
+        assertEquals(lives +1 , model.getArena().getLives());
         assertEquals(monsters + 1, model.getArena().getMonsters().size());
     }
 }
