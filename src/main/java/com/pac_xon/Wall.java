@@ -43,21 +43,6 @@ public class Wall extends Item {
         this.walls_array = walls_array;
     }
 
-    @Override
-    public void draw(TextGraphics graphics) {
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (walls_array[i][j] == TYPE.Wall || walls_array[i][j] == TYPE.Construction) {
-
-                    graphics.setBackgroundColor(TextColor.Factory.fromString("#000080"));
-                    graphics.putString(new TerminalPosition(i, j + 1), " ");
-                }
-            }
-        }
-
-    }
-
     public void addWall(int x, int y) {
 
         walls_array[x][y] = TYPE.Wall;

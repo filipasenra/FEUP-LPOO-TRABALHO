@@ -1,4 +1,4 @@
-package gui;
+package gui1.ViewSwing;
 
 import com.pac_xon.Model;
 

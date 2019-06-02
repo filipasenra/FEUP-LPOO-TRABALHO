@@ -15,6 +15,4 @@ public abstract class Item {
         this.color = color;
     }
 
-    abstract public void draw(TextGraphics graphics);
-
 }

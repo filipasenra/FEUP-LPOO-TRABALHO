@@ -1,4 +1,4 @@
-package gui;
+package gui.ViewSwing;
 
 import java.awt.*;
 import java.io.IOException;
@@ -9,12 +9,12 @@ import com.pac_xon.Model;
 public class GameFrame extends JFrame {
 
     private final int xResolution = 1260;
-    private final int yResolution = 400 + 76 + 20;
+    private final int yResolution = 400 + 76;
 
     private GameData gameData;
     private ScoreData scoreData;
 
-    public StartMenu startMenu;
+    public gui1.ViewSwing.StartMenu startMenu;
 
     private JLabel gameOver;
 
@@ -57,7 +57,7 @@ public class GameFrame extends JFrame {
         this.getContentPane().removeAll();
 
         //BackGround
-        this.startMenu = new StartMenu(model, xResolution, yResolution);
+        this.startMenu = new gui1.ViewSwing.StartMenu(model, xResolution, yResolution);
         this.startMenu.setSize(xResolution, yResolution + 76 + 20);
         this.add(startMenu);
 

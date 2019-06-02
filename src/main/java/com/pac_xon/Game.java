@@ -1,10 +1,9 @@
 package com.pac_xon;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import gui.ViewLanterna.ViewLanterna;
+import gui.ViewSwing.View;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +15,7 @@ public class Game {
 
     Model model;
     View view;
+    ViewLanterna viewLanterna;
 
     private Game() throws IOException {
 
@@ -23,8 +23,9 @@ public class Game {
         int height = 20;
 
         this.model = new Model(width, height);
-        this.view = new View(width, height, model);
+        this.view = new View(model);
         model.getArena().getScore().loadHighScores();
+        this.viewLanterna = new ViewLanterna(width, height, model);
     }
 
     public static synchronized Game getInstance() throws IOException {
@@ -36,7 +37,8 @@ public class Game {
 
     public void startMenu() throws IOException, InterruptedException {
 
-        view.startMenu(model.getMenu());
+        view.startMenu();
+        viewLanterna.startMenu();
 
         model.installKeyHandlerStartMenu();
 
@@ -68,6 +70,7 @@ public class Game {
             sleep(1000/FPS);
 
             updateFrame();
+            viewLanterna.draw();
 
             toolkit.sync();
 
@@ -84,7 +87,8 @@ public class Game {
 
         if (model.getArena().isFinishLevel()) {
 
-            view.startNextLevelMenu(model.getMenu());
+            view.startNextLevelMenu();
+            viewLanterna.startNextLevelMenu();
 
             model.newLevel();
 
@@ -94,7 +98,8 @@ public class Game {
 
         }
 
-        view.gameOverMenu(model.getMenu(), model.getArena().getScore().getScore());
+        view.gameOverMenu();
+        viewLanterna.gameOverMenu();
         model.getArena().getScore().loadHighScores();
         model.getArena().getScore().isHighScore(model.getArena().getScore());
         model.getArena().getScore().saveHighScores();
@@ -102,9 +107,5 @@ public class Game {
         TimeUnit.SECONDS.sleep(2);
 
         return false;
-    }
-
-    public Model getModel() {
-        return model;
     }
 }

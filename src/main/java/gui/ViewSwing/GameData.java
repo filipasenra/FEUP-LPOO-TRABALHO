@@ -1,12 +1,9 @@
-package gui;
+package gui.ViewSwing;
 
 import com.pac_xon.*;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,7 +19,6 @@ public class GameData extends JPanel {
     private int charactersHeight;
     private int width;
     private int height;
-    private int level;
 
     public GameData(Model model, int width, int height) throws IOException {
         this.model = model;

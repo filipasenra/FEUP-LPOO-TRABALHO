@@ -22,7 +22,7 @@ public class Arena {
     private List<Monster> monsters = new ArrayList<>();
     private Percentage percentage;
     private Score score;
-    private Lives lives;
+    private int lives;
 
     boolean finishLevel = false;
 
@@ -40,14 +40,14 @@ public class Arena {
         init(width,height, 2);
         this.player = p;
         this.wall = w;
-        this.lives = new Lives("Lives: ", "#000000", 4);
+        lives = 4;
     }
 
     public Arena(int width, int height, int lives, int no_monsters, int score) {
         init(width,height, no_monsters);
         player = new Player(new Position(0,0), "C", "#FFFF33");
         wall = new Wall(this.width, this.height, " ", "#000080");
-        this.lives = new Lives("Lives: ", "#000000", lives);
+        this.lives = lives;
         this.score = new Score("Score: ", "#000000", width);
         this.score.setScore(score);
     }
@@ -65,22 +65,6 @@ public class Arena {
         int y = rand.nextInt(height-3) + 2;
 
         return new Position(x, y);
-    }
-
-    public void draw(TextGraphics graphics) {
-
-        background.draw(graphics);
-
-        wall.draw(graphics);
-        player.draw(graphics);
-
-        for (Monster monster: monsters) {
-            monster.draw(graphics);
-        }
-
-        this.lives.draw(graphics);
-        this.score.draw(graphics);
-        this.percentage.draw(graphics);
     }
 
     public void move()
@@ -103,10 +87,10 @@ public class Arena {
 
     private void resetGame()
     {
-        if(lives.getLives() == 0)
+        if(lives == 0)
             return;
 
-        lives.setLives(lives.getLives()-1);
+        lives--;
 
         player.setPosition(new Position(0, 0));
 
@@ -239,7 +223,7 @@ public class Arena {
     }
 
     public boolean isGameOver() {
-        return lives.getLives() == 0;
+        return lives == 0;
     }
 
     public boolean isFinishLevel() {
@@ -250,7 +234,7 @@ public class Arena {
         return score;
     }
 
-    public Lives getLives() {
+    public int getLives() {
         return lives;
     }
 

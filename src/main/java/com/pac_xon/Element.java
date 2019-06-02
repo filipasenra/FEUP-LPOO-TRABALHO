@@ -26,14 +26,6 @@ public abstract class Element extends Item {
         return this.position;
     }
 
-    public void draw(TextGraphics graphics) {
-
-        graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
-        graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(position.getX(), position.getY() + 1), this.symbol);
-
-    }
-
     @Override
     public boolean equals(Object o) {
 

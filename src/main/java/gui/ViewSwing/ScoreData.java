@@ -1,10 +1,9 @@
-package gui;
+package gui.ViewSwing;
 
 import com.pac_xon.*;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.io.IOException;
 
 public class ScoreData extends JPanel {
@@ -12,7 +11,8 @@ public class ScoreData extends JPanel {
     private Model model;
 
     private int width;
-    private int height;
+
+    int a;
 
     public ScoreData(Model model, int width, int height) throws IOException {
         this.model = model;
@@ -21,8 +21,8 @@ public class ScoreData extends JPanel {
         setDoubleBuffered(true);
 
         this.width = width;
-        this.height = height;
     }
+
 
     @Override
     public void paintComponent(Graphics graphics) {
@@ -37,7 +37,7 @@ public class ScoreData extends JPanel {
 
         graphics.drawString((int) model.getArena().getPercentage().getPercentage() + "%/80%",width - 115, 20);
         graphics.drawString("Score: " + model.getArena().getScore().getScore(), width/2 - 75, 20);
-        graphics.drawString("Lives: " + model.getArena().getLives().getLives(), 0, 20);
+        graphics.drawString("Lives: " + model.getArena().getLives(), 0, 20);
     }
 }
 

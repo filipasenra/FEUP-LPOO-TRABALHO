@@ -15,14 +15,6 @@ public class Percentage extends Item {
         this.width = width;
     }
 
-    @Override
-    public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString(this.color));
-        graphics.enableModifiers(SGR.BOLD);
-        String percentage_to_be_shown = ((int) this.percentage + this.symbol);
-        graphics.putString(new TerminalPosition(this.width - percentage_to_be_shown.length(), 0), percentage_to_be_shown);
-    }
-
     public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
