@@ -62,19 +62,20 @@ public class Score extends Item {
     }
 
     public void isHighScore(Score score) {
-        int min = highScores.get(0);
-        for (int i : highScores){
-            min = min < i ? min : i;
-        }
 
-        int count = -1;
-        for (int i : highScores){
-            count ++;
-            if (i == min) {
-                highScores.set(count, score.getScore());
-                return;
+            int min = highScores.get(0);
+            for (int i : highScores) {
+                min = min < i ? min : i;
             }
-        }
+
+            int count = -1;
+            for (int i : highScores) {
+                count++;
+                if (i == min) {
+                    highScores.set(count, score.getScore());
+                    return;
+                }
+            }
     }
 }
 

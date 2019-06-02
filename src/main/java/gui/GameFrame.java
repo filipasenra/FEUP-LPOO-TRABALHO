@@ -65,7 +65,7 @@ public class GameFrame extends JFrame {
 
     }
 
-    public void addingGameOverMenu() throws IOException {
+    public void addingGameOverMenu() {
         this.gameData.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -79,7 +79,31 @@ public class GameFrame extends JFrame {
         this.gameOver.setForeground(Color.yellow);
         this.gameData.add(this.gameOver, gbc);
 
-        //Game Over
+        //Score
+        this.gameOver = new JLabel("Score: " + model.getArena().getScore().getScore());
+        this.gameOver.setFont(new Font("Courier New", Font.BOLD, 12));
+        this.gameOver.setForeground(Color.yellow);
+        this.gameData.add(this.gameOver, gbc);
+
+        this.setVisible(true);
+    }
+
+    public void addingNextLevelMenu(){
+
+        this.gameData.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(10,0,0,0); //Space between the buttons
+
+        //Next Level
+        this.gameOver = new JLabel("Next Level!");
+        this.gameOver.setFont(new Font("Courier New", Font.BOLD, 12));
+        this.gameOver.setForeground(Color.yellow);
+        this.gameData.add(this.gameOver, gbc);
+
+        //Score
         this.gameOver = new JLabel("Score: " + model.getArena().getScore().getScore());
         this.gameOver.setFont(new Font("Courier New", Font.BOLD, 12));
         this.gameOver.setForeground(Color.yellow);

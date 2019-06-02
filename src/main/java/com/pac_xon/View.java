@@ -72,6 +72,9 @@ public class View {
       /*  menu.nextLevelmenu(screen.newTextGraphics());
         screen.refresh();*/
 
+      this.gameFrame.addingNextLevelMenu();
+      this.gameFrame.repaint();
+
     }
 
     public void gameOverMenu(Menu menu, int score) throws IOException {
