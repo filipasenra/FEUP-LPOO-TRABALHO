@@ -28,4 +28,4 @@ Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
 ## Install Instructions
 
- To play the game, first it is required to install a Java development IDE, for example IntelliJ, and to download this project. After that, open the project this project in a suitable IDE and go to src/main/java/com/pac_xon and right click on the file Application.java and then click 'Run Application.java'.
+ To play the game, first it is required to install a Java development IDE, for example IntelliJ, and to download this project. After that, open the project this project in a suitable IDE and go to src/main/java/application and right click on the file Application.java and then click 'Run Application.java'.
