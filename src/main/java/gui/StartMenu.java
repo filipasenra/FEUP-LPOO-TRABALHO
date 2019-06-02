@@ -62,17 +62,19 @@ public class StartMenu extends JPanel {
         this.scores.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 String msg = "";
-                
+
                 for (int i : model.getArena().getScore().getHighScores()){
-                    msg = msg + i + "\n";
+                    msg = msg + i + "<br>";
                 }
 
-                JOptionPane.showConfirmDialog(null, msg, "TOP 5 HIGH SCORES", JOptionPane.DEFAULT_OPTION);
+                JLabel message = new JLabel("<html><center>" + msg, JLabel.CENTER);
+
+                JOptionPane.showMessageDialog(null, message, "TOP 5 HIGH SCORES", JOptionPane.PLAIN_MESSAGE);
             } } );
 
         //Exit Button
         this.exitButton =   new JButton("Exit");
-        this.exitButton.setFont(new Font("Courier New", Font.BOLD, 12));
+        this.exitButton.setFont(new Font("Courier NeDEFAULT_OPTIONw", Font.BOLD, 12));
         this.add(this.exitButton, gbc);
 
         this.exitButton.addActionListener(new ActionListener() {
