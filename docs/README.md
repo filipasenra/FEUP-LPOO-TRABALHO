@@ -96,13 +96,22 @@ All the Code Smells detected in the first deliverly were corrected:
 1. com.pac_xon.Game and com.pac_xon.Arena were Large Classes. Since then, we have adopted the MVC architeture separating the View component from the Model component.
 2. Since we have adopted the MVC architeture, there isn't a need for the class Menu (which seemed to be a so-called "Lazy Class").
 
+There aren't any code smells known to us on the final work.
+
 ## Testing Results
  
  ![TestResults](images/TestMutationResults.png)
  We have improved greatly on our test results. However some methods are not covered since they were difficult or we saw no necessity to test.
  You can find the reports [here](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_36/tree/master/docs/pitest).
 
-## Self-evaluation
-The work was carried out by both students but not divided specifically. We talked regularly and distributily small tasks accordingly.   
+## Self-evaluation and overall development time
+The work was carried out by both students but not divided specifically. We talked regularly and distributily small tasks accordingly.
 Filipa Senra: 50%.  
 Cláudia Marins: 50%.  
+The amount of time spent in the project's development was equivalent by both members. The amount of working time dedicated to the project was around 140 to 150 hours (Sum of the number of working hours of both members, approximately half per member).
+
+## Conclusions and final Considerations
+
+Overall, the developmnet of the project was very positive.
+We used the Swing java library and explored most of its functionalities.
+The final delivery is very solid in terms of structure (no bugs were found). In this delivery we prioritise code 'quality' over adding a lot of extra features.
