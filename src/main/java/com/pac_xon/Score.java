@@ -6,11 +6,13 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Score extends Item {
@@ -34,6 +36,12 @@ public class Score extends Item {
     }
 
     public void loadHighScores() throws IOException {
+
+        File f = new File(HighScoresFile);
+        if(!f.exists()) {
+            f.createNewFile();
+        }
+
         List<Integer> ints = Files.lines(Paths.get(HighScoresFile))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -55,6 +63,12 @@ public class Score extends Item {
     }
 
     public void isHighScore(Score score) {
+        if(highScores.size() == 0)
+        {
+            highScores.add(score.getScore());
+            return;
+        }
+
          int min = highScores.get(0);
 
             for (int i : highScores) {
