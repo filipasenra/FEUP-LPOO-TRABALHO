@@ -15,7 +15,6 @@ public class Game {
 
     Model model;
     View view;
-    ViewLanterna viewLanterna;
 
     private Game() throws IOException {
 
@@ -25,7 +24,6 @@ public class Game {
         this.model = new Model(width, height);
         this.view = new View(model);
         model.getArena().getScore().loadHighScores();
-        this.viewLanterna = new ViewLanterna(width, height, model);
     }
 
     public static synchronized Game getInstance() throws IOException {
@@ -38,7 +36,6 @@ public class Game {
     public void startMenu() throws IOException, InterruptedException {
 
         view.startMenu();
-        viewLanterna.startMenu();
 
         model.installKeyHandlerStartMenu();
 
@@ -70,7 +67,6 @@ public class Game {
             sleep(1000/FPS);
 
             updateFrame();
-            viewLanterna.draw();
 
             toolkit.sync();
 
@@ -88,7 +84,6 @@ public class Game {
         if (model.getArena().isFinishLevel()) {
 
             view.startNextLevelMenu();
-            viewLanterna.startNextLevelMenu();
 
             model.newLevel();
 
@@ -99,7 +94,6 @@ public class Game {
         }
 
         view.gameOverMenu();
-        viewLanterna.gameOverMenu();
         model.getArena().getScore().loadHighScores();
         model.getArena().getScore().isHighScore(model.getArena().getScore());
         model.getArena().getScore().saveHighScores();
