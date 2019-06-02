@@ -23,14 +23,6 @@
  ![Game](images/finishedPath.png)  
  ![GAMEOVER](images/gameOver.png)
 
-## Planned Features
-
-We plan to add **5 new features**:
- 1. Support of mouse in menus.
- 2. Adding LeaderBoard and How to play to the Main Menu.
- 3. Support of a graphical interface.
- 4. Adding new types of monsters.
- 5. Adding treats that give special powers to the player (for a finite time).
 
 ## Design
 
@@ -63,7 +55,25 @@ We plan to add **5 new features**:
  We used this pattern only in the com.pac_xon.Game class, so that when in the com.pac_xon.Application class we started a new game, it would not be possible to start a new one during all its performance.  
 
 ### Consequences
- With this pattern, we ensure that during our game execution it will only have exactly one instance. 
+ With this pattern, we ensure that during our game execution it will only have exactly one instance.
+ 
+ 
+ ### WE SHOULD RESPECT THE SINGLE RESPONSABILITY PRINCIPLE AND NOT HAVE LARGE CLASSES
+ 
+ ### Problem in Context
+ Some classes were too large and violated the single responsability principle.
+ 
+ ### The Pattern
+ In order to ensure that there was not any violation of the reffered principle and that the classes were not too large, we used **ARQUITECTURAL PATTERNS (MVC)**.
+ 
+ ### Implementation
+  We used this pattern creating a model (to represent the data) and view (to display it) class and used it to implement the game and its characters.
+  
+  ### Consequences
+ With this pattern, we ensure that our code is well organized.
+
+
+
 
 
 ## Known Code Smells and Refactoring Suggestions
