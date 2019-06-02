@@ -214,7 +214,6 @@ public class ArenaTest {
         Arena arena = new Arena(5, 6, player, wall);
 
         assertTrue(arena.playerMove(new Position(2, 2)));
-        assertEquals(8, arena.getScore().getScore());
 
     }
 
