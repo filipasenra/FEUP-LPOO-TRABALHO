@@ -25,6 +25,9 @@ Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
  
  Game Over Menu.   
  ![GAMEOVER](docs/images/gameOver.png)   
+ 
+ High Scores Menu.   
+ ![HIGHSCORES](docs/images/highScores.png)   
 
 ## Install Instructions
 
