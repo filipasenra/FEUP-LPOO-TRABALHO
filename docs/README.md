@@ -99,7 +99,7 @@ All the Code Smells detected in the first deliverly were corrected:
 ## Testing Results
  
  ![TestResults](images/TestMutationResults.png)
- We understand that these results are far from ideal and we plan to improve them.   
+ We have improved greatly on our test results. However some methods are not covered since they were difficult or we saw no necessity to test.
  You can find the reports [here](https://github.com/FEUP-LPOO/projecto-lpoo-2019-lpoo_36/tree/master/docs/pitest).
 
 ## Self-evaluation
