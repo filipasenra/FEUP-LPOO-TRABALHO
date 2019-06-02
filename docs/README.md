@@ -35,9 +35,7 @@
  We used the **COMPOSITE** pattern to structure the code. With this pattern, the primitive objects can be composed into more complex ones wich allows us to add new types of components in a much easier way.
  
 ### Implementation
- We used a class called com.pac_xon.Item that was extended by four other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.  
- 
- ![COMPOSITIVEUML](images/CompositiveUML.png)
+ We used a class called com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player.
  
 ### Consequences
  With this pattern, the primitive objects, that in our case are com.pac_xon.Item and then com.pac_xon.Element, can be composed into more complex ones wich allows us to add new types of components in a much easier way.
@@ -71,7 +69,6 @@
   
   ### Consequences
  With this pattern, we ensure that our code is well organized.
-
 
 
 
