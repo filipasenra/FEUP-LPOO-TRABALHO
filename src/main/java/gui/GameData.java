@@ -1,9 +1,12 @@
 package gui;
 
 import com.pac_xon.*;
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
@@ -74,6 +77,7 @@ public class GameData extends JPanel {
     }
 
     private void drawPLayer(Graphics g2d) {
+
         Player player2d = model.getArena().getPlayer();
 
         drawCharacter(player, g2d, player2d.getPosition().getX(), player2d.getPosition().getY());

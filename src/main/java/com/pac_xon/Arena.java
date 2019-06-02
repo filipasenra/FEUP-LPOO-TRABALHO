@@ -148,7 +148,7 @@ public class Arena {
         return true;
     }
 
-    //The monsters walk in diagonals and change direction every time he hits a wall
+    //The monsters walk in diagonals and change direction every time it hits a wall
     public void monsterMove(Monster monster) {
         Position position = monster.move();
 

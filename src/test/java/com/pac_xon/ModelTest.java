@@ -31,17 +31,4 @@ public class ModelTest {
         assertEquals(lives +1 , model.getArena().getLives().getLives());
         assertEquals(monsters + 1, model.getArena().getMonsters().size());
     }
-
-    @Test
-    public void testKeyHandlerStartMenu() throws AWTException {
-
-        model.installKeyHandlerStartMenu();
-
-
-        JTextField inputField = new JTextField();
-
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().dispatchKeyEvent(new KeyEvent(inputField, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, KeyEvent.VK_UNDEFINED, 'Z'));
-
-        //assertEquals(model. menu_OPTION, Model.MENU.GAMEOVER);
-    }
 }
