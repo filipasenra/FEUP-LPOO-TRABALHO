@@ -8,15 +8,16 @@
 
 ## Implemented Features
 
- 1. **Start game**: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key.    
- 2. **Play game**: once the enter key is pressed the user enters the game play section, in this section the user is a player, reperensented by a 'C', that uses all the arrow keys to move in the screen and fill the area with walls. If the player is outside the area filled with walls, the player moves continuously in the same direction according to the arrow keys that are pressed. If he is inside the blue area he moves only once per each key pressed.  
- 3. **Monsters**: in the game area that is not yet covered with walls we have monsters moving.   
- 4. **Collisions**: each time a monsters touches a wall or the player, we have a collision detection.  
- 5. **Lives**: during the game execution, each time a colision occurs, the player looses a life. In the beginning of the game the player has 5 lives, everytime a level is passed he gains a live and when he reaches 0 lives he looses.
- 6. **Score**: during the game, the score increases through levels. The points of the score are gained each time the player covers some part of the game area. The points are given accordingly to the area that is left to cover: the number of points received increase with the decrease of the area left to cover.   
- 7. **Percentage**: to pass a level, the player has to cover 80% of the total area.  
- 8. **Level**: everytime the player passes a level, the number of monsters increases. The game starts with only to monsters and goes up to 10.   
- 9. **Game over**: when the player has no more lives, he looses the game, getting the final score.   
+ 1. **Start game**: in the beginning of the game, we show to the user a start game menu, that allows the user to start the game by pressing the enter key or clicking in Start Game. The user can also choose to see the top 5 scores so far or to exit the game. 
+ 2. **Top 5 Scores**: In the Start Game Menu the user can choose to see the top 5 scores so far recorded in th game.
+ 3. **Play game**: once the enter key is pressed, or the Start Game Button is selected, the user enters the game play section, in this section the user is a player, reperensented by the pacman figure, that uses all the arrow keys to move in the screen and fill the area with walls. If the player is outside the area filled with walls, the player moves continuously in the same direction according to the arrow keys that are pressed. If he is inside the blue area he moves only once per each key pressed.  
+ 4. **Monsters**: in the game area that is not yet covered with walls we have monsters moving.   
+ 5. **Collisions**: each time a monsters touches a wall or the player, we have a collision detection.  
+ 6. **Lives**: during the game execution, each time a colision occurs, the player looses a life. In the beginning of the game the player has 5 lives, everytime a level is passed he gains a live and when he reaches 0 lives he looses.
+ 7. **Score**: during the game, the score increases through levels. The points of the score are gained each time the player covers some part of the game area. The points are given accordingly to the area that is left to cover: the number of points received increase with the decrease of the area left to cover.   
+ 8. **Percentage**: to pass a level, the player has to cover 80% of the total area.  
+ 9. **Level**: everytime the player passes a level, the number of monsters increases. The game starts with only two monsters and goes up to 10.   
+ 10. **Game over**: when the player has no more lives, he looses the game, getting the final score. If the score is in the top 5 scores, then the score is recorded.  
  
  ![Begin](images/start.png)
  ![Game](images/finishedPath.png)  
@@ -39,10 +40,10 @@ We plan to add **5 new features**:
  In this game we have lots of objects that compose the game area, such has the walls, the player itself, the mosnters, the background and the objects related to the game score.
  
 ### The Pattern
- We used the **COMPOSITE** pattern to structurate the code. With this pattern, the primitive objects can be composed into more complex ones wich allows us to add new types of components in a much easier way.
+ We used the **COMPOSITE** pattern to structure the code. With this pattern, the primitive objects can be composed into more complex ones wich allows us to add new types of components in a much easier way.
  
 ### Implementation
- We used a class called com.pac_xon.Item that was extended by six other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score, com.pac_xon.Percentage and com.pac_xon.Lives. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.  
+ We used a class called com.pac_xon.Item that was extended by four other classes: com.pac_xon.Element, com.pac_xon.Wall, Background, com.pac_xon.Score. The com.pac_xon.Element class is also extended by the classes com.pac_xon.Monster and com.pac_xon.Player, due to the same issue.  
  
  ![COMPOSITIVEUML](images/CompositiveUML.png)
  
@@ -67,8 +68,9 @@ We plan to add **5 new features**:
 
 ## Known Code Smells and Refactoring Suggestions
 
-1. com.pac_xon.Game and com.pac_xon.Arena have too many fields (Large Class). None of the classical treatmants seem to be perfectly adequate, but moving the graphical interface to another class seems to be a possiblity. More discussion on this topic is needed.
-2. The class com.pac_xon.Menu seems to be a so-called "Lazy Class". However, since we anticipated future changes to the graphic design (and we know that this may seem like a pitfall) such as adding images, suport to mouse and others, this class will be usefull in the future.
+All the Code Smells detected in the first deliverly were corrected:
+1. com.pac_xon.Game and com.pac_xon.Arena were Large Classes. Since then, we have adopted the MVC architeture separating the View component from the Model component.
+2. Since we have adopted the MVC architeture, there isn't a need for the class Menu (which seemed to be a so-called "Lazy Class").
 
 ## Testing Results
  
