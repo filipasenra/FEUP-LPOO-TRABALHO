@@ -28,7 +28,6 @@ public class Game {
         this.model = new Model(width, height);
         this.view = new View(width, height, model);
         model.getArena().getScore().loadHighScores();
-
     }
 
     public static synchronized Game getInstance() throws IOException {
@@ -73,6 +72,7 @@ public class Game {
             run();
         else
             view.closeScreen();
+
     }
 
     private boolean isToBeContinue() throws IOException, InterruptedException {
@@ -91,8 +91,7 @@ public class Game {
 
         view.gameOverMenu(model.getMenu(), model.getArena().getScore().getScore());
         model.getArena().getScore().isHighScore(model.getArena().getScore());
-
-        System.out.println(model.getArena().getScore().getHighScores());
+        model.getArena().getScore().saveHighScores();
 
         TimeUnit.SECONDS.sleep(2);
 
