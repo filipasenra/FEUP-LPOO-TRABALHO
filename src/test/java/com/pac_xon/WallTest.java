@@ -15,7 +15,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 public class WallTest {
 
-    Wall wall = new Wall(5, 6, " ", "ffffff");
+    Wall wall = new Wall(5, 6);
 
     Wall.TYPE [][] expected;
 
@@ -105,7 +105,7 @@ public class WallTest {
         wall.setWalls_array(beginning);
 
         List<Monster> monsters = new ArrayList<>();
-        Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
+        Monster monster = new Monster(new Position(1, 1));
         monsters.add(monster);
 
         wall.fillWall(monsters);
@@ -135,7 +135,7 @@ public class WallTest {
         System.out.println(" ");*/
 
         List<Monster> monsters = new ArrayList<>();
-        Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
+        Monster monster = new Monster(new Position(1, 1));
         monsters.add(monster);
 
         wall.fillWall(monsters);
@@ -194,7 +194,7 @@ public class WallTest {
         wall.setWalls_array(beginning);
 
         List<Monster> monsters = new ArrayList<>();
-        Monster monster = new Monster(new Position(1, 1), "X", "ffffff");
+        Monster monster = new Monster(new Position(1, 1));
         monsters.add(monster);
 
         wall.fillWall(monsters);

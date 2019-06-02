@@ -35,9 +35,9 @@ public class ArenaTest {
     @Test
     public void checkMonsterMove() {
         Position position = new Position(2, 2);
-        Monster monster = new Monster(position, "X", "#ffffff");
+        Monster monster = new Monster(position);
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
@@ -57,14 +57,14 @@ public class ArenaTest {
     @Test
     public void checkProcessKeyDown(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -76,14 +76,14 @@ public class ArenaTest {
     @Test
     public void checkProcessKeyUp(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -95,14 +95,14 @@ public class ArenaTest {
     @Test
     public void checkProcessKeyLeft(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -114,14 +114,14 @@ public class ArenaTest {
     @Test
     public void checkProcessKeyRight(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -134,9 +134,9 @@ public class ArenaTest {
     public void checkProcessKeyNotAccepted(){
 
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Player.DIRECTION direction = player.getDirection();
 
@@ -151,9 +151,9 @@ public class ArenaTest {
     @Test
     public void checkPlayerMovementV1(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Player.DIRECTION direction = player.getDirection();
 
@@ -170,9 +170,9 @@ public class ArenaTest {
     @Test
     public void checkPlayerMovementV2(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
 
-        Player player = new Player(new Position(1, 1), "C", "#ffffff");
+        Player player = new Player(new Position(1, 1));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -188,7 +188,7 @@ public class ArenaTest {
     @Test
     public void checkPlayerMovementV3(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Construction, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
@@ -196,7 +196,7 @@ public class ArenaTest {
                 {Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall}};
 
         wall.setWalls_array(beginning);
-        Player player = new Player(new Position(1, 1), "C", "#ffffff");
+        Player player = new Player(new Position(1, 1));
 
         Arena arena = new Arena(5, 6, player, wall);
 
@@ -207,9 +207,9 @@ public class ArenaTest {
     @Test
     public void checkPlayerMovementV4(){
 
-        Wall wall = new Wall(5, 6, " ", "ffffff");
+        Wall wall = new Wall(5, 6);
 
-        Player player = new Player(new Position(0, 0), "C", "#ffffff");
+        Player player = new Player(new Position(0, 0));
 
         Arena arena = new Arena(5, 6, player, wall);
 

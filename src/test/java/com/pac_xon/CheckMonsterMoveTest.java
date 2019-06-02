@@ -13,7 +13,7 @@ public class CheckMonsterMoveTest {
     @Before
     public void setUp(){
 
-        wall = new Wall(5, 6, " ", "ffffff");
+        wall = new Wall(5, 6);
         Wall.TYPE [][] beginning = {{Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall, Wall.TYPE.Wall, Wall.TYPE.Wall},
                 {Wall.TYPE.Wall, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Sea, Wall.TYPE.Wall},
@@ -32,7 +32,7 @@ public class CheckMonsterMoveTest {
         //Check when colliding with point of Square outside
 
         Position position = new Position(1, 1);
-        Monster monster = new Monster(position, "X", "#ffffff");
+        Monster monster = new Monster(position);
 
         arena.monsterMove(monster);
 
@@ -46,7 +46,7 @@ public class CheckMonsterMoveTest {
 
 
         Position position = new Position(3, 2);
-        Monster monster = new Monster(position, "X", "#ffffff");
+        Monster monster = new Monster(position);
 
         arena.monsterMove(monster);
 
@@ -60,7 +60,7 @@ public class CheckMonsterMoveTest {
 
 
         Position position = new Position(3, 2);
-        Monster monster = new Monster(position, "X", "#ffffff");
+        Monster monster = new Monster(position);
 
         arena.monsterMove(monster);
 
