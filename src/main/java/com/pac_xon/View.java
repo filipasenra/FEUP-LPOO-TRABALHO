@@ -14,19 +14,19 @@ import java.io.IOException;
 
 public class View {
 
-    private Screen screen;
+    //private Screen screen;
     private Model model;
     public GameFrame gameFrame;
 
     public View(int width, int height, Model model) throws IOException {
 
-        Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
+        /*Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         this.screen = new TerminalScreen(terminal);
         this.model = model;
 
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+        screen.doResizeIfNecessary();     // resize screen if necessary*/
 
         gameFrame = new GameFrame(model);
         gameFrame.requestFocus();
@@ -38,46 +38,46 @@ public class View {
     }
 
     public void draw() throws IOException {
-        screen.clear();
+        /*screen.clear();
         model.getArena().draw(screen.newTextGraphics());
-        screen.refresh();
+        screen.refresh();*/
 
         gameFrame.repaint();
     }
 
     public void closeScreen() throws IOException {
-        screen.close();
+       // screen.close();
 
         gameFrame.dispatchEvent(new WindowEvent(gameFrame, WindowEvent.WINDOW_CLOSING));
     }
 
-    public KeyStroke readInput() throws IOException {
-        return screen.readInput();
+    /*public KeyStroke readInput() throws IOException {
+        //return screen.readInput();
     }
 
     public KeyStroke pollInput() throws IOException {
-        return screen.pollInput();
-    }
+       // return screen.pollInput();
+    }*/
 
     public void startMenu(Menu menu) throws IOException {
 
-        menu.startGamemenu(screen.newTextGraphics());
-        screen.refresh();
+       /* menu.startGamemenu(screen.newTextGraphics());
+        screen.refresh();*/
 
         gameFrame.addingStartMenu();
     }
 
     public void startNextLevelMenu (Menu menu) throws IOException {
 
-        menu.nextLevelmenu(screen.newTextGraphics());
-        screen.refresh();
+      /*  menu.nextLevelmenu(screen.newTextGraphics());
+        screen.refresh();*/
 
     }
 
     public void gameOverMenu(Menu menu, int score) throws IOException {
 
-        menu.gameOvermenu(screen.newTextGraphics(), score);
-        screen.refresh();
+        /*menu.gameOvermenu(screen.newTextGraphics(), score);
+        screen.refresh();*/
 
 
         this.gameFrame.addingGameOverMenu();

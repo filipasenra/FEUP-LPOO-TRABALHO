@@ -13,17 +13,14 @@ import static java.lang.Thread.sleep;
 public class Game {
     private static  Game currentInstance;
     private int FPS = 10; //Frames per seconds (controls the speed of the Player)
-    private int initTime;
 
     Model model;
     View view;
 
-    boolean startGame = false;
-
     private Game() throws IOException {
-            initTime = (int) (System.currentTimeMillis());
-            int width = 70;
-            int height = 20;
+
+        int width = 70;
+        int height = 20;
 
         this.model = new Model(width, height);
         this.view = new View(width, height, model);
@@ -51,6 +48,13 @@ public class Game {
 
     }
 
+    private void updateFrame() throws IOException {
+
+        model.getArena().move();
+        view.draw();
+
+    }
+
     public void run() throws IOException, InterruptedException {
 
         model.installKeyHandlerGame();
@@ -58,13 +62,14 @@ public class Game {
 
         model.menu_OPTION = Model.MENU.GAME;
 
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+
         do {
+            sleep(1000/FPS);
 
+            updateFrame();
 
-            if (((System.currentTimeMillis() - initTime) % (1000 / FPS)) == 0) {
-                model.getArena().move();
-                view.draw();
-            }
+            toolkit.sync();
 
         } while (!model.getArena().isGameOver() && !model.getArena().isFinishLevel() && model.menu_OPTION == Model.MENU.GAME);
 
