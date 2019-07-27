@@ -6,6 +6,8 @@ When there are no more lives, the game ends.
 
 Made by Ana Filipa Campos Senra and Cláudia Inês da Costa Martins.
 
+**Final Grade**: 17
+
 ## Screenshots
 
  Start of the Game.   
